@@ -190,7 +190,7 @@ export default async function CaseStudyPage({
 
         {/* Benchmark chart */}
         {project.benchmarkChart && (
-          <CaseSection title="Results — throughput">
+          <CaseSection title="Results - throughput">
             <BenchmarkChart chart={project.benchmarkChart} />
           </CaseSection>
         )}

@@ -1,7 +1,7 @@
 import type { Bug } from '@/lib/types';
 
 // ============================================================================
-// TEMPLATE BUG — file contoh berisi field KOSONG.
+// TEMPLATE BUG - file contoh berisi field KOSONG.
 //
 // Cara pakai:
 //   1. Salin file ini menjadi content/bugs/<id>.ts, mis. content/bugs/bug-0001.ts.

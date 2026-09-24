@@ -1,6 +1,6 @@
 import type { Bug } from '@/lib/types';
 
-// Registry bug. KOSONG secara sengaja (brief §6 — jangan mengisi contoh bug apa pun).
+// Registry bug. KOSONG secara sengaja (brief §6 - jangan mengisi contoh bug apa pun).
 //
 // Cara menambah bug:
 //   1. Salin content/bugs/_example.ts jadi content/bugs/<id>.ts (mis. bug-0001.ts).

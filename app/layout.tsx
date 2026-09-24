@@ -13,12 +13,12 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: `${site.name} — ${site.role}`,
-    template: `%s — ${site.name}`,
+    default: `${site.name} - ${site.role}`,
+    template: `%s - ${site.name}`,
   },
   description:
     'QA Engineer portfolio: manual, API, automation, and performance testing across web, mobile, and POS.',
-  metadataBase: new URL('https://fajarrr21.github.io'),
+  metadataBase: new URL('https://fajarardians.my.id'),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

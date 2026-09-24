@@ -26,7 +26,7 @@ export interface CodeSnippet {
   caption: string;
   lang: string;
   code: string;
-  /** true => tampilkan label "Illustrative example — not production code". */
+  /** true => tampilkan label "Illustrative example - not production code". */
   illustrative?: boolean;
 }
 

@@ -30,11 +30,10 @@ jobs:
         run: npm ci
 
       - name: Build static export
-        # basePath default sudah /qa-portfolio (lihat next.config.mjs).
-        # Override lewat env NEXT_PUBLIC_BASE_PATH kalau pindah host.
+        # Custom domain fajarardians.my.id disajikan di root, jadi basePath kosong.
         run: npm run build
         env:
-          NEXT_PUBLIC_BASE_PATH: /qa-portfolio
+          NEXT_PUBLIC_BASE_PATH: ''
 
       # Nonaktifkan Jekyll supaya folder/file diawali _ tetap disajikan.
       - name: Add .nojekyll

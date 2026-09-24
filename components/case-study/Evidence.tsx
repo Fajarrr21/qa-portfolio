@@ -24,7 +24,7 @@ export function Evidence({ items }: { items: EvidenceItem[] }) {
               <img src={asset(item.src)} alt={item.alt} className="w-full" />
             )
           ) : (
-            // Placeholder TODO — hanya dirender di dev (lihat visibleEvidence).
+            // Placeholder TODO - hanya dirender di dev (lihat visibleEvidence).
             <div className="flex min-h-[10rem] items-center justify-center border-b border-dashed border-border bg-bg p-4">
               <p className="text-center text-xs font-medium text-muted">{item.todo}</p>
             </div>

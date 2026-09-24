@@ -1,5 +1,5 @@
 // Helper untuk aset statis (PDF resume, gambar evidence) yang direferensikan
-// lewat <a href> / <img src> biasa — Next.js tidak otomatis menambahkan
+// lewat <a href> / <img src> biasa - Next.js tidak otomatis menambahkan
 // basePath ke URL semacam ini (beda dengan <Link> dan next/font).
 // NEXT_PUBLIC_* di-inline saat build.
 

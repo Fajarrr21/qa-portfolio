@@ -4,7 +4,7 @@ Portfolio website QA Engineer untuk **Fajar Ardiansyah**.
 
 Next.js (App Router) + TypeScript + Tailwind CSS, di-*static export* dan di-deploy ke GitHub Pages lewat GitHub Actions.
 
-**Live:** `https://fajarrr21.github.io/qa-portfolio/`
+**Live:** `https://fajarardians.my.id/` (custom domain, di-host GitHub Pages)
 
 ---
 
@@ -20,10 +20,10 @@ Next.js (App Router) + TypeScript + Tailwind CSS, di-*static export* dan di-depl
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000/qa-portfolio
+npm run dev      # http://localhost:3000
 ```
 
-> `basePath` default = `/qa-portfolio`, jadi di dev pun URL-nya diawali `/qa-portfolio`.
+> `basePath` default sekarang kosong (custom domain di root), jadi dev jalan di `http://localhost:3000`.
 
 Build static:
 
@@ -41,13 +41,26 @@ npx serve out
 
 `basePath` & `assetPrefix` diatur lewat env var `NEXT_PUBLIC_BASE_PATH` (lihat `next.config.mjs`).
 
-- GitHub Pages (default): `NEXT_PUBLIC_BASE_PATH=/qa-portfolio`
-- Vercel / domain sendiri di root: `NEXT_PUBLIC_BASE_PATH=` (string kosong)
+- Custom domain di root (default sekarang): `NEXT_PUBLIC_BASE_PATH=` (kosong)
+- GitHub Pages project path: `NEXT_PUBLIC_BASE_PATH=/qa-portfolio`
 
-## Deploy
+## Deploy (custom domain: fajarardians.my.id)
 
 Workflow `.github/workflows/deploy.yml` build + deploy otomatis setiap push ke `main`.
-Aktifkan **Settings → Pages → Source: GitHub Actions** di repo GitHub.
+
+Setup satu kali:
+
+1. **GitHub** → repo Settings → Pages → Source: **GitHub Actions**.
+2. Settings → Pages → **Custom domain**: isi `fajarardians.my.id` (file `public/CNAME` sudah menyimpannya).
+3. **DNS di Exabytes** (domain apex → GitHub Pages), tambahkan 4 record A ke root (`@`):
+   ```
+   185.199.108.153
+   185.199.109.153
+   185.199.110.153
+   185.199.111.153
+   ```
+   (opsional IPv6/AAAA: `2606:50c0:8000::153` … `::8003::153`)
+4. Setelah DNS propagate, centang **Enforce HTTPS** (sertifikat otomatis dari GitHub).
 
 ## Struktur
 
@@ -75,7 +88,7 @@ Buat satu file di `content/projects/<slug>.ts` yang meng-export objek bertipe `P
 ### Aturan konten
 
 - Semua teks tinggal di `content/`, bukan di dalam komponen.
-- Paragraf yang ditulis dari fakta ditandai komentar `// REVIEW(fajar)` — mohon dibaca ulang.
+- Paragraf yang ditulis dari fakta ditandai komentar `// REVIEW(fajar)` - mohon dibaca ulang.
 - Data yang belum tersedia ditandai `TODO(fajar): ...`.
 
 ---
@@ -91,7 +104,7 @@ perlu kamu lengkapi:
    - `content/projects/orangehrm.ts` → `public/evidence/orangehrm-report.png`
    - `content/projects/ecommerce.ts` → `public/evidence/ecommerce-report.png`
    - `content/projects/go-vs-node.ts` → `public/evidence/go-vs-node-dashboard.png`
-2. **Paragraf ber-`REVIEW(fajar)`** di `content/site.ts` (About me) dan overview tiap project —
+2. **Paragraf ber-`REVIEW(fajar)`** di `content/site.ts` (About me) dan overview tiap project -
    silakan koreksi kalau ada yang kurang pas.
 3. **`bug-hunting`** masih `draft: true` dan `content/bugs/` sengaja kosong. Untuk mengisi:
    salin `content/bugs/_example.ts`, isi field-nya, daftarkan di `content/bugs/index.ts`,
@@ -104,4 +117,4 @@ perlu kamu lengkapi:
 Case study `cards-school-v3` adalah *professional work* (PT. Cazh Teknologi Inovasi). Sesuai izin & aturan:
 tidak ada kode dari repo kantor, tidak ada URL/kredensial/endpoint internal, tidak ada data pengguna,
 dan tidak ada screenshot aplikasi. Semua snippet di sana **ilustratif** (ditulis ulang generik) dan
-diberi label `Illustrative example — not production code`. Automation suite dijalankan **lokal** (bukan CI).
+diberi label `Illustrative example - not production code`. Automation suite dijalankan **lokal** (bukan CI).

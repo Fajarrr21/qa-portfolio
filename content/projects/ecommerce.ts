@@ -32,7 +32,7 @@ export const ecommerce: Project = {
   ],
   // REVIEW(fajar): overview disusun dari isi repo.
   overview: [
-    'A Cypress suite that covers a full e-commerce shopping journey on the Automation Exercise demo site — from register and login through products, cart, and checkout — alongside an API layer.',
+    'A Cypress suite that covers a full e-commerce shopping journey on the Automation Exercise demo site - from register and login through products, cart, and checkout - alongside an API layer.',
     'API testing is split across two targets: Restful Booker as a stable CRUD-with-auth target, and the Automation Exercise API for status-code and negative checks. UI flows use the Page Object Model.',
   ],
   objective:
@@ -62,7 +62,7 @@ export const ecommerce: Project = {
         'Add one and multiple products; verify the displayed price',
         'Remove a product, and remove one of several leaving the rest correct',
         'Checkout end to end: cart → address → payment → order placed',
-        'Guests cannot check out — the Register/Login modal appears',
+        'Guests cannot check out - the Register/Login modal appears',
       ],
     },
     {
@@ -74,7 +74,7 @@ export const ecommerce: Project = {
       ],
     },
     {
-      module: 'API — Restful Booker (CRUD + auth)',
+      module: 'API - Restful Booker (CRUD + auth)',
       scenarios: [
         'POST /auth returns a token',
         'GET list, POST create, GET by id',
@@ -83,7 +83,7 @@ export const ecommerce: Project = {
       ],
     },
     {
-      module: 'API — Automation Exercise',
+      module: 'API - Automation Exercise',
       scenarios: [
         'Negative verifyLogin: 404 unknown user, 400 missing email, 405 wrong method',
         'GET products and GET brands',
@@ -96,7 +96,7 @@ export const ecommerce: Project = {
     'Page Object Model with a per-page element map and chainable actions.',
     'API split: Restful Booker for stable CRUD, Automation Exercise for status codes.',
     'Sequential CRUD passes the auth token and booking id between tests.',
-    'Dynamic test data — timestamped names and computed dates — avoids collisions.',
+    'Dynamic test data - timestamped names and computed dates - avoids collisions.',
     'File upload and required-field validation on the Contact form.',
     'GitHub Actions runs the suite and publishes the Mochawesome report.',
   ],
@@ -169,7 +169,7 @@ const booking = {
   evidence: [
     {
       alt: 'Mochawesome report summary for the e-commerce suite',
-      caption: 'Mochawesome report — see the live version linked below.',
+      caption: 'Mochawesome report - see the live version linked below.',
       todo: 'TODO(fajar): add a screenshot of the Mochawesome report at public/evidence/ecommerce-report.png',
     },
   ],

@@ -26,7 +26,7 @@ export function Journey({
         ))}
       </ol>
 
-      {/* Continuous rail — manual testing sebagai baseline, bukan titik. */}
+      {/* Continuous rail - manual testing sebagai baseline, bukan titik. */}
       <div className="mt-8 flex items-center gap-3 rounded border border-border bg-surface px-4 py-3">
         <span
           aria-hidden
@@ -41,7 +41,7 @@ export function Journey({
         />
       </div>
       <p className="mt-2 text-xs text-muted">
-        Manual testing runs continuously beneath the milestones above — automation is added on top,
+        Manual testing runs continuously beneath the milestones above - automation is added on top,
         not in its place.
       </p>
     </div>

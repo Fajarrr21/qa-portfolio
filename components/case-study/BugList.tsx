@@ -28,7 +28,7 @@ function BugField({ label, children }: { label: string; children: React.ReactNod
   );
 }
 
-// Detail satu bug — dirender sebagai section beranchor (#id) di halaman bug-hunting.
+// Detail satu bug - dirender sebagai section beranchor (#id) di halaman bug-hunting.
 function BugDetail({ bug }: { bug: Bug }) {
   const evidenceToShow = visibleEvidence(bug.evidence);
   return (
@@ -82,7 +82,7 @@ export function BugLog({ bugs }: { bugs: Bug[] }) {
     return (
       <div className="rounded border border-dashed border-border bg-surface p-6">
         <p className="text-sm text-muted">
-          No bugs published yet. This is a template — each bug is one file under{' '}
+          No bugs published yet. This is a template - each bug is one file under{' '}
           <code className="font-mono text-xs text-text">content/bugs/</code>, recording id, title,
           severity, type, context, steps, expected, actual, investigation, evidence, and status.
         </p>

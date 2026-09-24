@@ -35,7 +35,7 @@ export const orangehrm: Project = {
     'The suite is built on the Page Object Model so selectors and actions live apart from the assertions, and it runs automatically on GitHub Actions with a publicly accessible Mochawesome report.',
   ],
   objective:
-    'Cover the Login, Forgot Password, and Directory flows end to end — including UI, responsive, negative, and timing checks — and validate a public REST API for status codes, response structure, and data types.',
+    'Cover the Login, Forgot Password, and Directory flows end to end - including UI, responsive, negative, and timing checks - and validate a public REST API for status codes, response structure, and data types.',
   scope: [
     {
       module: 'Login (22 tests)',
@@ -72,7 +72,7 @@ export const orangehrm: Project = {
       ],
     },
     {
-      module: 'API — Platzi Fake Store (25 tests)',
+      module: 'API - Platzi Fake Store (25 tests)',
       scenarios: [
         'GET categories: array, non-empty, schema (id, name, image)',
         'Content-Type and response time checks',
@@ -167,7 +167,7 @@ export default LoginPage`,
   evidence: [
     {
       alt: 'Mochawesome report summary for the OrangeHRM suite',
-      caption: 'Mochawesome report — see the live version linked below.',
+      caption: 'Mochawesome report - see the live version linked below.',
       todo: 'TODO(fajar): add a screenshot of the Mochawesome report at public/evidence/orangehrm-report.png',
     },
   ],

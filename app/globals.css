@@ -12,7 +12,7 @@
   --accent: #1f3864; /* navy, sama dengan CV */
   --accent-hover: #16294a;
 
-  /* Status severity — hanya dipakai di halaman bug. Kontras AA di atas surface. */
+  /* Status severity - hanya dipakai di halaman bug. Kontras AA di atas surface. */
   --sev-critical: #b42318;
   --sev-high: #c4320a;
   --sev-medium: #b54708;

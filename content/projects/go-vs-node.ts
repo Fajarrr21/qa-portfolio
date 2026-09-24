@@ -32,34 +32,34 @@ export const goVsNode: Project = {
   // REVIEW(fajar): overview disusun dari benchmark report.
   overview: [
     'A controlled benchmark comparing a Go and a Node.js backend behind identical endpoints, database, and cache. The goal is not to crown a winner but to see how the performance gap shifts as load increases fivefold.',
-    'Both stacks are driven at two concurrency levels — 20 and 100 virtual users — against four endpoints chosen to isolate CPU, database, and cache behaviour. Across every endpoint and both load levels, Go leads on throughput by 1.19× to 1.65×, and the ordering never reverses.',
+    'Both stacks are driven at two concurrency levels - 20 and 100 virtual users - against four endpoints chosen to isolate CPU, database, and cache behaviour. Across every endpoint and both load levels, Go leads on throughput by 1.19× to 1.65×, and the ordering never reverses.',
   ],
   objective:
     'Measure throughput and latency of equivalent Go and Node.js services under identical conditions, and observe how the gap changes when load rises from 20 to 100 virtual users.',
   benchmarkDesign: [
     '4 endpoints × 2 stacks × 2 load levels = 16 runs.',
-    'A single, shared PostgreSQL 16 (10,000 rows) and Redis 7 — one instance used by both stacks, so neither gets a more favourable environment.',
+    'A single, shared PostgreSQL 16 (10,000 rows) and Redis 7 - one instance used by both stacks, so neither gets a more favourable environment.',
     'Identical SQL (character for character), LIMIT 100, DB pool 25, Redis pool 25, and the same cache key & TTL on both sides.',
     'The same k6 script runs every combination; the load level is set through an environment variable, never by editing the file.',
     'constant-vus executor, 30 seconds per run, with thresholds p95 < 500 ms, http_req_failed < 1%, and checks > 99%.',
   ],
   measurementIntegrity:
-    'At 100 VU, Node unexpectedly recorded a lower p95 latency than Go on both database endpoints. Before treating that as a result, I checked where the time was spent: on /products the off-server portion of the request (p95 total minus server-side waiting) was ~34 ms for Go against ~1.27 ms for Node — nearly 27×. A 27% difference in transferred data (258 MB vs 203 MB) cannot explain a 27× difference in time, which points to the load generator rather than the application. Because k6 and both apps shared a single 8 GB laptop, that finding was withheld until it can be re-run with the load generator on a separate machine.',
+    'At 100 VU, Node unexpectedly recorded a lower p95 latency than Go on both database endpoints. Before treating that as a result, I checked where the time was spent: on /products the off-server portion of the request (p95 total minus server-side waiting) was ~34 ms for Go against ~1.27 ms for Node - nearly 27×. A 27% difference in transferred data (258 MB vs 203 MB) cannot explain a 27× difference in time, which points to the load generator rather than the application. Because k6 and both apps shared a single 8 GB laptop, that finding was withheld until it can be re-run with the load generator on a separate machine.',
   scope: [
     {
       module: 'Endpoints under test',
       scenarios: [
-        '/hello — pure CPU, no I/O (HTTP-handling baseline)',
-        '/products — light database query (LIMIT 100)',
-        '/products-where-like — LIKE with a sequential scan (non-indexable)',
-        '/products-with-cache — Redis cache-aside',
+        '/hello - pure CPU, no I/O (HTTP-handling baseline)',
+        '/products - light database query (LIMIT 100)',
+        '/products-where-like - LIKE with a sequential scan (non-indexable)',
+        '/products-with-cache - Redis cache-aside',
       ],
     },
     {
       module: 'Load levels',
       scenarios: [
-        '20 VU — workload character still dominates the gap',
-        '100 VU — endpoints converge to 1.19×–1.29× as shared resources saturate',
+        '20 VU - workload character still dominates the gap',
+        '100 VU - endpoints converge to 1.19×–1.29× as shared resources saturate',
       ],
     },
   ],
@@ -163,7 +163,7 @@ go-api:
   evidence: [
     {
       alt: 'Interactive benchmark dashboard for the Go vs Node.js study',
-      caption: 'Interactive dashboard — see the live version linked below.',
+      caption: 'Interactive dashboard - see the live version linked below.',
       todo: 'TODO(fajar): add a screenshot of the dashboard at public/evidence/go-vs-node-dashboard.png',
     },
   ],

@@ -1,15 +1,15 @@
 import type { Project } from '@/lib/types';
 
-// PROFESSIONAL WORK — PT. Cazh Teknologi Inovasi. draft:false (izin diberikan).
+// PROFESSIONAL WORK - PT. Cazh Teknologi Inovasi. draft:false (izin diberikan).
 // ATURAN KERAHASIAAN (brief §6) berlaku penuh:
 //  - Tidak ada kode dari repo kantor. Semua snippet ILUSTRATIF & generik (illustrative:true).
 //  - Tidak ada URL/staging/endpoint internal, kredensial, API key, atau data pengguna.
 //  - Nama modul hanya yang disebut di brief §10 / resume.
-//  - JANGAN mengklaim automation berjalan di CI — suite dijalankan lokal.
+//  - JANGAN mengklaim automation berjalan di CI - suite dijalankan lokal.
 
 export const cardsSchoolV3: Project = {
   slug: 'cards-school-v3',
-  title: 'CARDS School V3 — QA & Test Automation',
+  title: 'CARDS School V3 - QA & Test Automation',
   subtitle: 'Professional QA on a school-management platform',
   label: 'Professional work',
   professionalOrg: 'PT. Cazh Teknologi Inovasi',
@@ -35,13 +35,13 @@ export const cardsSchoolV3: Project = {
   overview: [
     'CARDS is a school-management ecosystem used by 700+ educational institutions: a web dashboard, a parents app, a school app, and a POS app together with its own web dashboard. As the sole QA engineer on the team, I own test coverage and bug-reporting standards across all of it.',
     'My role here spans test design, manual testing, regression, exploratory testing, and UAT, plus bug validation, end-to-end automation, and coordinating QA interns. Automation focuses on the latest major releases and stays traceable to the test case documentation.',
-    'To respect confidentiality, this case study contains no internal URLs, credentials, user data, or code from the company repository. The code below is illustrative — rewritten generically to show the patterns I use, not production source.',
+    'To respect confidentiality, this case study contains no internal URLs, credentials, user data, or code from the company repository. The code below is illustrative - rewritten generically to show the patterns I use, not production source.',
   ],
   objective:
     'Keep the CARDS ecosystem release-ready across web, mobile, and POS through test design, manual testing, and automation that maps one-to-one to the test case documentation.',
   scope: [
     {
-      module: 'CARDS School V3 — automation (847+ cases, 64 specs)',
+      module: 'CARDS School V3 - automation (847+ cases, 64 specs)',
       scenarios: [
         'Onboarding and authentication',
         'Academic Year settings',
@@ -51,7 +51,7 @@ export const cardsSchoolV3: Project = {
       ],
     },
     {
-      module: 'Cazh POS web dashboard — CPA V2 (86 cases)',
+      module: 'Cazh POS web dashboard - CPA V2 (86 cases)',
       scenarios: ['Login', 'Dashboard', 'Employee'],
     },
     {
