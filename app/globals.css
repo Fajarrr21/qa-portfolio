@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---- Design tokens (single source of truth) ---- */
+:root {
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --text: #1c1917;
+  --muted: #57534e;
+  --border: #e7e5e4;
+  --accent: #1f3864; /* navy, sama dengan CV */
+  --accent-hover: #16294a;
+
+  /* Status severity — hanya dipakai di halaman bug. Kontras AA di atas surface. */
+  --sev-critical: #b42318;
+  --sev-high: #c4320a;
+  --sev-medium: #b54708;
+  --sev-low: #067647;
+
+  --radius: 10px;
+  --gutter: 16px;
+}
+
+/* ---- Base ---- */
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Fokus terlihat jelas untuk keyboard users. */
+:where(a, button, input, [tabindex]):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Hormati preferensi reduce motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---- Layout helpers ---- */
+.container-page {
+  width: 100%;
+  max-width: var(--max, 1100px);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Jarak antar section: 64px mobile, 96px desktop. */
+.section {
+  padding-block: 64px;
+}
+@media (min-width: 768px) {
+  .section {
+    padding-block: 96px;
+  }
+}
+
+/* Skip link. */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -48px;
+  z-index: 100;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 8px 14px;
+  transition: top 150ms ease;
+}
+.skip-link:focus {
+  top: 8px;
+}
+
+/* Shiki: buat block code menyatu dengan tema (background surface tipis). */
+.code-block pre.shiki {
+  margin: 0;
+  padding: 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #f7f6f4 !important;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.code-block pre.shiki code {
+  font-family: var(--font-mono, ui-monospace, monospace);
+}
