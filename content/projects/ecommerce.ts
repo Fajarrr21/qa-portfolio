@@ -3,11 +3,17 @@ import type { Project } from '@/lib/types';
 // Sumber: repo publik github.com/Fajarrr21/cypress-ui-api-automation.
 // Scope dari blok describe/it asli; angka dari Mochawesome (9 suites, 38 tests,
 // 38 pass, 0 fail, 100%). Snippet disalin dari repo. Tidak tampil di Home.
+//
+// REVIEW(fajar): string `id:` adalah terjemahan dari versi Inggris. Kode di
+// dalam snippet sengaja tidak diterjemahkan.
 
 export const ecommerce: Project = {
   slug: 'ecommerce',
   title: 'E-Commerce Web Automation',
-  subtitle: 'Cypress UI + API automation',
+  subtitle: {
+    en: 'Cypress UI + API automation',
+    id: 'Automation Cypress UI + API',
+  },
   label: 'Personal project',
   tags: ['Automation', 'API'],
   featured: false,
@@ -22,9 +28,9 @@ export const ecommerce: Project = {
     'Automation Exercise',
   ],
   metrics: [
-    { value: '38', label: 'End-to-end tests' },
+    { value: '38', label: { en: 'End-to-end tests', id: 'Test end-to-end' } },
     { value: '100%', label: 'Pass rate' },
-    { value: '9', label: 'Spec suites' },
+    { value: '9', label: { en: 'Spec suites', id: 'Suite spec' } },
   ],
   links: [
     { label: 'GitHub', href: 'https://github.com/Fajarrr21/cypress-ui-api-automation' },
@@ -32,84 +38,194 @@ export const ecommerce: Project = {
   ],
   // REVIEW(fajar): overview disusun dari isi repo.
   overview: [
-    'A Cypress suite that covers a full e-commerce shopping journey on the Automation Exercise demo site - from register and login through products, cart, and checkout - alongside an API layer.',
-    'API testing is split across two targets: Restful Booker as a stable CRUD-with-auth target, and the Automation Exercise API for status-code and negative checks. UI flows use the Page Object Model.',
+    {
+      en: 'A Cypress suite that covers a full e-commerce shopping journey on the Automation Exercise demo site - from register and login through products, cart, and checkout - alongside an API layer.',
+      id: 'Suite Cypress yang menutup perjalanan belanja e-commerce secara utuh di situs demo Automation Exercise - mulai dari register dan login, lalu produk, keranjang, sampai checkout - berikut lapisan API-nya.',
+    },
+    {
+      en: 'API testing is split across two targets: Restful Booker as a stable CRUD-with-auth target, and the Automation Exercise API for status-code and negative checks. UI flows use the Page Object Model.',
+      id: 'Pengujian API dibagi ke dua target: Restful Booker sebagai target CRUD-dengan-auth yang stabil, dan API Automation Exercise untuk pemeriksaan status code dan kasus negatif. Alur UI memakai Page Object Model.',
+    },
   ],
-  objective:
-    'Automate the register → login → browse → cart → checkout journey with real UI assertions, and cover a REST API end to end: auth, CRUD, and negative status codes.',
+  objective: {
+    en: 'Automate the register → login → browse → cart → checkout journey with real UI assertions, and cover a REST API end to end: auth, CRUD, and negative status codes.',
+    id: 'Mengotomasi perjalanan register → login → jelajah produk → keranjang → checkout dengan assertion UI yang nyata, serta menutup REST API secara end-to-end: auth, CRUD, dan status code negatif.',
+  },
   scope: [
     {
-      module: 'Login & Register',
+      module: { en: 'Login & Register', id: 'Login & Register' },
       scenarios: [
-        'Reject login with wrong credentials and with an empty email',
-        'Log in successfully with a registered account',
-        'Register a new user through to Account Created',
-        'Reject registration with an already-registered email',
+        {
+          en: 'Reject login with wrong credentials and with an empty email',
+          id: 'Menolak login dengan kredensial salah dan dengan email kosong',
+        },
+        {
+          en: 'Log in successfully with a registered account',
+          id: 'Login berhasil dengan akun yang sudah terdaftar',
+        },
+        {
+          en: 'Register a new user through to Account Created',
+          id: 'Mendaftarkan user baru sampai halaman Account Created',
+        },
+        {
+          en: 'Reject registration with an already-registered email',
+          id: 'Menolak registrasi dengan email yang sudah terdaftar',
+        },
       ],
     },
     {
-      module: 'Products',
+      module: { en: 'Products', id: 'Produk' },
       scenarios: [
-        'List all products and open a product detail from the list',
-        'Search returns matching results',
-        'Search for a missing product returns an empty result',
-        'Filter by category (Women > Dress)',
+        {
+          en: 'List all products and open a product detail from the list',
+          id: 'Menampilkan semua produk dan membuka detail produk dari daftar',
+        },
+        {
+          en: 'Search returns matching results',
+          id: 'Pencarian mengembalikan hasil yang cocok',
+        },
+        {
+          en: 'Search for a missing product returns an empty result',
+          id: 'Pencarian produk yang tidak ada mengembalikan hasil kosong',
+        },
+        {
+          en: 'Filter by category (Women > Dress)',
+          id: 'Filter berdasarkan kategori (Women > Dress)',
+        },
       ],
     },
     {
-      module: 'Cart & Checkout',
+      module: { en: 'Cart & Checkout', id: 'Keranjang & Checkout' },
       scenarios: [
-        'Add one and multiple products; verify the displayed price',
-        'Remove a product, and remove one of several leaving the rest correct',
-        'Checkout end to end: cart → address → payment → order placed',
-        'Guests cannot check out - the Register/Login modal appears',
+        {
+          en: 'Add one and multiple products; verify the displayed price',
+          id: 'Menambah satu dan beberapa produk; memverifikasi harga yang tampil',
+        },
+        {
+          en: 'Remove a product, and remove one of several leaving the rest correct',
+          id: 'Menghapus satu produk, dan menghapus satu dari beberapa produk tanpa mengacaukan sisanya',
+        },
+        {
+          en: 'Checkout end to end: cart → address → payment → order placed',
+          id: 'Checkout end-to-end: keranjang → alamat → pembayaran → pesanan dibuat',
+        },
+        {
+          en: 'Guests cannot check out - the Register/Login modal appears',
+          id: 'Tamu tidak bisa checkout - modal Register/Login muncul',
+        },
       ],
     },
     {
-      module: 'Contact & Video Tutorials',
+      module: { en: 'Contact & Video Tutorials', id: 'Contact & Video Tutorials' },
       scenarios: [
-        'Submit the Contact Us form with a file upload',
-        'Block submit when the required email is missing',
-        'The Video Tutorials link points to YouTube',
+        {
+          en: 'Submit the Contact Us form with a file upload',
+          id: 'Mengirim form Contact Us beserta unggahan berkas',
+        },
+        {
+          en: 'Block submit when the required email is missing',
+          id: 'Memblokir submit saat email wajib belum diisi',
+        },
+        {
+          en: 'The Video Tutorials link points to YouTube',
+          id: 'Tautan Video Tutorials mengarah ke YouTube',
+        },
       ],
     },
     {
-      module: 'API - Restful Booker (CRUD + auth)',
+      module: {
+        en: 'API - Restful Booker (CRUD + auth)',
+        id: 'API - Restful Booker (CRUD + auth)',
+      },
       scenarios: [
-        'POST /auth returns a token',
-        'GET list, POST create, GET by id',
-        'PUT update and DELETE require the token',
-        'GET the deleted booking returns 404',
+        { en: 'POST /auth returns a token', id: 'POST /auth mengembalikan token' },
+        {
+          en: 'GET list, POST create, GET by id',
+          id: 'GET daftar, POST buat baru, GET berdasarkan id',
+        },
+        {
+          en: 'PUT update and DELETE require the token',
+          id: 'PUT update dan DELETE mewajibkan token',
+        },
+        {
+          en: 'GET the deleted booking returns 404',
+          id: 'GET booking yang sudah dihapus mengembalikan 404',
+        },
       ],
     },
     {
-      module: 'API - Automation Exercise',
+      module: { en: 'API - Automation Exercise', id: 'API - Automation Exercise' },
       scenarios: [
-        'Negative verifyLogin: 404 unknown user, 400 missing email, 405 wrong method',
-        'GET products and GET brands',
-        'POST search products by keyword',
-        'Full account lifecycle: create → verify → delete',
+        {
+          en: 'Negative verifyLogin: 404 unknown user, 400 missing email, 405 wrong method',
+          id: 'verifyLogin negatif: 404 user tidak dikenal, 400 email tidak ada, 405 method salah',
+        },
+        { en: 'GET products and GET brands', id: 'GET products dan GET brands' },
+        {
+          en: 'POST search products by keyword',
+          id: 'POST pencarian produk berdasarkan kata kunci',
+        },
+        {
+          en: 'Full account lifecycle: create → verify → delete',
+          id: 'Siklus akun penuh: buat → verifikasi → hapus',
+        },
       ],
     },
   ],
   strategy: [
-    'Page Object Model with a per-page element map and chainable actions.',
-    'API split: Restful Booker for stable CRUD, Automation Exercise for status codes.',
-    'Sequential CRUD passes the auth token and booking id between tests.',
-    'Dynamic test data - timestamped names and computed dates - avoids collisions.',
-    'File upload and required-field validation on the Contact form.',
-    'GitHub Actions runs the suite and publishes the Mochawesome report.',
+    {
+      en: 'Page Object Model with a per-page element map and chainable actions.',
+      id: 'Page Object Model dengan peta elemen per halaman dan action yang bisa dirantai.',
+    },
+    {
+      en: 'API split: Restful Booker for stable CRUD, Automation Exercise for status codes.',
+      id: 'API dipisah: Restful Booker untuk CRUD yang stabil, Automation Exercise untuk status code.',
+    },
+    {
+      en: 'Sequential CRUD passes the auth token and booking id between tests.',
+      id: 'CRUD berurutan mengoper token auth dan booking id antar test.',
+    },
+    {
+      en: 'Dynamic test data - timestamped names and computed dates - avoids collisions.',
+      id: 'Data test dinamis - nama bertimestamp dan tanggal yang dihitung - menghindari tabrakan data.',
+    },
+    {
+      en: 'File upload and required-field validation on the Contact form.',
+      id: 'Unggah berkas dan validasi field wajib pada form Contact.',
+    },
+    {
+      en: 'GitHub Actions runs the suite and publishes the Mochawesome report.',
+      id: 'GitHub Actions menjalankan suite dan menerbitkan laporan Mochawesome.',
+    },
   ],
   architecture: [
-    { label: 'Spec file', note: 'UI + API describe / it' },
-    { label: 'Page Object', note: 'element map + actions' },
-    { label: 'Automation Exercise / Restful Booker', note: 'systems under test' },
-    { label: 'GitHub Actions', note: 'Cypress run on push' },
-    { label: 'Mochawesome → GitHub Pages', note: 'published report' },
+    {
+      label: { en: 'Spec file', id: 'File spec' },
+      note: { en: 'UI + API describe / it', id: 'describe / it UI + API' },
+    },
+    {
+      label: 'Page Object',
+      note: { en: 'element map + actions', id: 'peta elemen + action' },
+    },
+    {
+      label: 'Automation Exercise / Restful Booker',
+      note: { en: 'systems under test', id: 'sistem yang diuji' },
+    },
+    {
+      label: 'GitHub Actions',
+      note: { en: 'Cypress run on push', id: 'Cypress berjalan saat push' },
+    },
+    {
+      label: 'Mochawesome → GitHub Pages',
+      note: { en: 'published report', id: 'laporan yang dipublikasikan' },
+    },
   ],
   snippets: [
     {
-      caption: 'The Page Object groups selectors in one map and returns this for chainable actions.',
+      caption: {
+        en: 'The Page Object groups selectors in one map and returns this for chainable actions.',
+        id: 'Page Object mengumpulkan selector dalam satu peta dan mengembalikan this supaya action bisa dirantai.',
+      },
       lang: 'js',
       code: `class LoginPage {
   elements = {
@@ -129,7 +245,10 @@ export const ecommerce: Project = {
 }`,
     },
     {
-      caption: 'The auth test captures a token that later PUT and DELETE calls reuse.',
+      caption: {
+        en: 'The auth test captures a token that later PUT and DELETE calls reuse.',
+        id: 'Test auth menangkap token yang dipakai ulang oleh panggilan PUT dan DELETE berikutnya.',
+      },
       lang: 'js',
       code: `it('POST /auth returns a token', () => {
   cy.request({
@@ -144,7 +263,10 @@ export const ecommerce: Project = {
 })`,
     },
     {
-      caption: 'Booking data is generated per run so tests never collide on stale records.',
+      caption: {
+        en: 'Booking data is generated per run so tests never collide on stale records.',
+        id: 'Data booking dibuat ulang tiap eksekusi supaya test tidak bertabrakan dengan data lama.',
+      },
       lang: 'js',
       code: `const fmt = (d) => d.toISOString().split('T')[0]
 const checkout = new Date()
@@ -161,15 +283,25 @@ const booking = {
     },
   ],
   results: [
-    { value: '38', label: 'Tests', note: 'across 9 spec suites' },
-    { value: '38', label: 'Passed' },
-    { value: '0', label: 'Failed' },
+    {
+      value: '38',
+      label: { en: 'Tests', id: 'Test' },
+      note: { en: 'across 9 spec suites', id: 'di 9 suite spec' },
+    },
+    { value: '38', label: { en: 'Passed', id: 'Lulus' } },
+    { value: '0', label: { en: 'Failed', id: 'Gagal' } },
     { value: '100%', label: 'Pass rate' },
   ],
   evidence: [
     {
-      alt: 'Mochawesome report summary for the e-commerce suite',
-      caption: 'Mochawesome report - see the live version linked below.',
+      alt: {
+        en: 'Mochawesome report summary for the e-commerce suite',
+        id: 'Ringkasan laporan Mochawesome untuk suite e-commerce',
+      },
+      caption: {
+        en: 'Mochawesome report - see the live version linked below.',
+        id: 'Laporan Mochawesome - lihat versi live-nya di tautan bawah.',
+      },
       todo: 'TODO(fajar): add a screenshot of the Mochawesome report at public/evidence/ecommerce-report.png',
     },
   ],

@@ -5,24 +5,30 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { ChevronDown, Github, Menu, X } from 'lucide-react';
 import { site } from '@/content/site';
+import { ui } from '@/content/ui';
 import { asset } from '@/lib/basePath';
+import { type Locale, localePath, stripLocale, t } from '@/lib/i18n';
+import { LanguageSwitcher } from './LanguageSwitcher';
 
+// Path netral (tanpa prefiks bahasa); prefiks ditambahkan saat render.
 const navItems = [
-  { label: 'Work', href: '/work' },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
-];
+  { key: 'work', path: '/work', label: ui.nav.work },
+  { key: 'about', path: '/about', label: ui.nav.about },
+  { key: 'contact', path: '/contact', label: ui.nav.contact },
+] as const;
 
 const resumeLinks = [
-  { label: 'English (PDF)', href: asset(site.resume.en) },
-  { label: 'Bahasa Indonesia (PDF)', href: asset(site.resume.id) },
+  { label: ui.nav.resumeEn, href: asset(site.resume.en) },
+  { label: ui.nav.resumeId, href: asset(site.resume.id) },
 ];
 
-function isActive(pathname: string, href: string) {
-  return pathname === href || pathname.startsWith(`${href}/`);
+/** Bandingkan path tanpa prefiks bahasa, jadi /id/work ikut menandai "Work". */
+function isActive(pathname: string, path: string) {
+  const current = stripLocale(pathname);
+  return current === path || current.startsWith(`${path}/`);
 }
 
-export function Navbar() {
+export function Navbar({ lang }: { lang: Locale }) {
   const pathname = usePathname();
   const [resumeOpen, setResumeOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -57,9 +63,12 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-bg/90 backdrop-blur">
-      <nav aria-label="Main" className="container-page flex h-16 items-center justify-between">
+      <nav
+        aria-label={t(ui.a11y.mainNav, lang)}
+        className="container-page flex h-16 items-center justify-between"
+      >
         <Link
-          href="/"
+          href={localePath('/', lang)}
           className="text-base font-semibold tracking-widest text-text transition-colors hover:text-accent"
         >
           FAJAR
@@ -68,17 +77,17 @@ export function Navbar() {
         {/* Desktop */}
         <div className="hidden items-center gap-1 md:flex">
           {navItems.map((item) => {
-            const active = isActive(pathname, item.href);
+            const active = isActive(pathname, item.path);
             return (
               <Link
-                key={item.href}
-                href={item.href}
+                key={item.key}
+                href={localePath(item.path, lang)}
                 aria-current={active ? 'page' : undefined}
                 className={`rounded px-3 py-2 text-sm font-medium transition-colors ${
                   active ? 'text-accent' : 'text-muted hover:text-text'
                 }`}
               >
-                {item.label}
+                {t(item.label, lang)}
               </Link>
             );
           })}
@@ -92,7 +101,7 @@ export function Navbar() {
               aria-haspopup="menu"
               className="flex items-center gap-1 rounded px-3 py-2 text-sm font-medium text-muted transition-colors hover:text-text"
             >
-              Resume
+              {t(ui.nav.resume, lang)}
               <ChevronDown
                 size={15}
                 className={`transition-transform duration-150 ${resumeOpen ? 'rotate-180' : ''}`}
@@ -111,7 +120,7 @@ export function Navbar() {
                     download
                     className="block px-4 py-2 text-sm text-text transition-colors hover:bg-bg hover:text-accent"
                   >
-                    {r.label}
+                    {t(r.label, lang)}
                   </a>
                 ))}
               </div>
@@ -127,19 +136,24 @@ export function Navbar() {
             <Github size={16} />
             GitHub
           </a>
+
+          <LanguageSwitcher lang={lang} className="ml-2" />
         </div>
 
-        {/* Mobile toggle */}
-        <button
-          type="button"
-          onClick={() => setMobileOpen((v) => !v)}
-          aria-expanded={mobileOpen}
-          aria-controls="mobile-menu"
-          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-          className="rounded p-2 text-text md:hidden"
-        >
-          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        {/* Mobile toggle - switcher tetap terlihat tanpa membuka menu */}
+        <div className="flex items-center gap-2 md:hidden">
+          <LanguageSwitcher lang={lang} />
+          <button
+            type="button"
+            onClick={() => setMobileOpen((v) => !v)}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
+            aria-label={t(mobileOpen ? ui.a11y.closeMenu : ui.a11y.openMenu, lang)}
+            className="rounded p-2 text-text"
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </nav>
 
       {/* Mobile panel */}
@@ -147,23 +161,23 @@ export function Navbar() {
         <div id="mobile-menu" className="border-t border-border bg-surface md:hidden">
           <div className="container-page flex flex-col py-3">
             {navItems.map((item) => {
-              const active = isActive(pathname, item.href);
+              const active = isActive(pathname, item.path);
               return (
                 <Link
-                  key={item.href}
-                  href={item.href}
+                  key={item.key}
+                  href={localePath(item.path, lang)}
                   aria-current={active ? 'page' : undefined}
                   className={`rounded px-2 py-3 text-sm font-medium ${
                     active ? 'text-accent' : 'text-text'
                   }`}
                 >
-                  {item.label}
+                  {t(item.label, lang)}
                 </Link>
               );
             })}
             <div className="mt-1 border-t border-border pt-2">
               <p className="px-2 py-1 text-xs font-medium uppercase tracking-wider text-muted">
-                Resume
+                {t(ui.nav.resume, lang)}
               </p>
               {resumeLinks.map((r) => (
                 <a
@@ -172,7 +186,7 @@ export function Navbar() {
                   download
                   className="block rounded px-2 py-3 text-sm text-text"
                 >
-                  {r.label}
+                  {t(r.label, lang)}
                 </a>
               ))}
             </div>

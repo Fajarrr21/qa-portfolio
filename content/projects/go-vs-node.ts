@@ -3,11 +3,17 @@ import type { Project } from '@/lib/types';
 // Sumber: repo publik github.com/Fajarrr21/go-vs-node-benchmark.
 // Semua angka diambil dari reports/BENCHMARK_REPORT.md dan k6/results/*.json.
 // Chart RPS dibolehkan karena raw data tersedia di repo (brief §6).
+//
+// REVIEW(fajar): string `id:` adalah terjemahan dari versi Inggris. Tidak ada
+// angka yang diubah; nama endpoint dan nama tool dibiarkan apa adanya.
 
 export const goVsNode: Project = {
   slug: 'go-vs-node',
   title: 'Go vs Node.js Load-Testing Benchmark',
-  subtitle: 'A controlled k6 throughput & latency study',
+  subtitle: {
+    en: 'A controlled k6 throughput & latency study',
+    id: 'Studi throughput & latency terkontrol dengan k6',
+  },
   label: 'Personal project',
   tags: ['Performance'],
   featured: true,
@@ -21,9 +27,9 @@ export const goVsNode: Project = {
     'Redis 7',
   ],
   metrics: [
-    { value: '712,788', label: 'Requests' },
-    { value: '16', label: 'Runs' },
-    { value: '0.00%', label: 'HTTP failures' },
+    { value: '712,788', label: { en: 'Requests', id: 'Request' } },
+    { value: '16', label: { en: 'Runs', id: 'Eksekusi' } },
+    { value: '0.00%', label: { en: 'HTTP failures', id: 'Kegagalan HTTP' } },
   ],
   links: [
     { label: 'GitHub', href: 'https://github.com/Fajarrr21/go-vs-node-benchmark' },
@@ -31,54 +37,127 @@ export const goVsNode: Project = {
   ],
   // REVIEW(fajar): overview disusun dari benchmark report.
   overview: [
-    'A controlled benchmark comparing a Go and a Node.js backend behind identical endpoints, database, and cache. The goal is not to crown a winner but to see how the performance gap shifts as load increases fivefold.',
-    'Both stacks are driven at two concurrency levels - 20 and 100 virtual users - against four endpoints chosen to isolate CPU, database, and cache behaviour. Across every endpoint and both load levels, Go leads on throughput by 1.19× to 1.65×, and the ordering never reverses.',
+    {
+      en: 'A controlled benchmark comparing a Go and a Node.js backend behind identical endpoints, database, and cache. The goal is not to crown a winner but to see how the performance gap shifts as load increases fivefold.',
+      id: 'Benchmark terkontrol yang membandingkan backend Go dan Node.js di balik endpoint, database, dan cache yang identik. Tujuannya bukan mencari pemenang, melainkan melihat bagaimana selisih performanya bergeser saat beban naik lima kali lipat.',
+    },
+    {
+      en: 'Both stacks are driven at two concurrency levels - 20 and 100 virtual users - against four endpoints chosen to isolate CPU, database, and cache behaviour. Across every endpoint and both load levels, Go leads on throughput by 1.19× to 1.65×, and the ordering never reverses.',
+      id: 'Kedua stack dibebani pada dua tingkat konkurensi - 20 dan 100 virtual user - terhadap empat endpoint yang dipilih untuk mengisolasi perilaku CPU, database, dan cache. Di seluruh endpoint dan kedua tingkat beban, Go unggul pada throughput sebesar 1,19× sampai 1,65×, dan urutannya tidak pernah berbalik.',
+    },
   ],
-  objective:
-    'Measure throughput and latency of equivalent Go and Node.js services under identical conditions, and observe how the gap changes when load rises from 20 to 100 virtual users.',
+  objective: {
+    en: 'Measure throughput and latency of equivalent Go and Node.js services under identical conditions, and observe how the gap changes when load rises from 20 to 100 virtual users.',
+    id: 'Mengukur throughput dan latency layanan Go dan Node.js yang setara dalam kondisi identik, lalu mengamati bagaimana selisihnya berubah saat beban naik dari 20 ke 100 virtual user.',
+  },
   benchmarkDesign: [
-    '4 endpoints × 2 stacks × 2 load levels = 16 runs.',
-    'A single, shared PostgreSQL 16 (10,000 rows) and Redis 7 - one instance used by both stacks, so neither gets a more favourable environment.',
-    'Identical SQL (character for character), LIMIT 100, DB pool 25, Redis pool 25, and the same cache key & TTL on both sides.',
-    'The same k6 script runs every combination; the load level is set through an environment variable, never by editing the file.',
-    'constant-vus executor, 30 seconds per run, with thresholds p95 < 500 ms, http_req_failed < 1%, and checks > 99%.',
+    {
+      en: '4 endpoints × 2 stacks × 2 load levels = 16 runs.',
+      id: '4 endpoint × 2 stack × 2 tingkat beban = 16 eksekusi.',
+    },
+    {
+      en: 'A single, shared PostgreSQL 16 (10,000 rows) and Redis 7 - one instance used by both stacks, so neither gets a more favourable environment.',
+      id: 'Satu PostgreSQL 16 (10.000 baris) dan Redis 7 yang dipakai bersama - satu instance untuk kedua stack, supaya tidak ada yang dapat lingkungan lebih menguntungkan.',
+    },
+    {
+      en: 'Identical SQL (character for character), LIMIT 100, DB pool 25, Redis pool 25, and the same cache key & TTL on both sides.',
+      id: 'SQL yang identik (sama persis karakter demi karakter), LIMIT 100, DB pool 25, Redis pool 25, serta cache key & TTL yang sama di kedua sisi.',
+    },
+    {
+      en: 'The same k6 script runs every combination; the load level is set through an environment variable, never by editing the file.',
+      id: 'Script k6 yang sama menjalankan semua kombinasi; tingkat beban diatur lewat environment variable, bukan dengan mengubah isi file.',
+    },
+    {
+      en: 'constant-vus executor, 30 seconds per run, with thresholds p95 < 500 ms, http_req_failed < 1%, and checks > 99%.',
+      id: 'Executor constant-vus, 30 detik per eksekusi, dengan threshold p95 < 500 ms, http_req_failed < 1%, dan checks > 99%.',
+    },
   ],
-  measurementIntegrity:
-    'At 100 VU, Node unexpectedly recorded a lower p95 latency than Go on both database endpoints. Before treating that as a result, I checked where the time was spent: on /products the off-server portion of the request (p95 total minus server-side waiting) was ~34 ms for Go against ~1.27 ms for Node - nearly 27×. A 27% difference in transferred data (258 MB vs 203 MB) cannot explain a 27× difference in time, which points to the load generator rather than the application. Because k6 and both apps shared a single 8 GB laptop, that finding was withheld until it can be re-run with the load generator on a separate machine.',
+  measurementIntegrity: {
+    en: 'At 100 VU, Node unexpectedly recorded a lower p95 latency than Go on both database endpoints. Before treating that as a result, I checked where the time was spent: on /products the off-server portion of the request (p95 total minus server-side waiting) was ~34 ms for Go against ~1.27 ms for Node - nearly 27×. A 27% difference in transferred data (258 MB vs 203 MB) cannot explain a 27× difference in time, which points to the load generator rather than the application. Because k6 and both apps shared a single 8 GB laptop, that finding was withheld until it can be re-run with the load generator on a separate machine.',
+    id: 'Pada 100 VU, Node secara tidak terduga mencatat p95 latency lebih rendah daripada Go di kedua endpoint database. Sebelum menganggapnya sebagai hasil, saya memeriksa ke mana waktunya habis: pada /products, bagian request di luar server (p95 total dikurangi waktu tunggu di sisi server) sekitar 34 ms untuk Go berbanding sekitar 1,27 ms untuk Node - hampir 27×. Selisih data terkirim sebesar 27% (258 MB vs 203 MB) tidak bisa menjelaskan selisih waktu 27×, sehingga penyebabnya lebih mengarah ke load generator, bukan ke aplikasinya. Karena k6 dan kedua aplikasi berbagi satu laptop 8 GB, temuan itu saya tahan dulu sampai bisa diulang dengan load generator di mesin terpisah.',
+  },
   scope: [
     {
-      module: 'Endpoints under test',
+      module: { en: 'Endpoints under test', id: 'Endpoint yang diuji' },
       scenarios: [
-        '/hello - pure CPU, no I/O (HTTP-handling baseline)',
-        '/products - light database query (LIMIT 100)',
-        '/products-where-like - LIKE with a sequential scan (non-indexable)',
-        '/products-with-cache - Redis cache-aside',
+        {
+          en: '/hello - pure CPU, no I/O (HTTP-handling baseline)',
+          id: '/hello - murni CPU, tanpa I/O (baseline penanganan HTTP)',
+        },
+        {
+          en: '/products - light database query (LIMIT 100)',
+          id: '/products - query database ringan (LIMIT 100)',
+        },
+        {
+          en: '/products-where-like - LIKE with a sequential scan (non-indexable)',
+          id: '/products-where-like - LIKE dengan sequential scan (tidak bisa diindeks)',
+        },
+        {
+          en: '/products-with-cache - Redis cache-aside',
+          id: '/products-with-cache - cache-aside Redis',
+        },
       ],
     },
     {
-      module: 'Load levels',
+      module: { en: 'Load levels', id: 'Tingkat beban' },
       scenarios: [
-        '20 VU - workload character still dominates the gap',
-        '100 VU - endpoints converge to 1.19×–1.29× as shared resources saturate',
+        {
+          en: '20 VU - workload character still dominates the gap',
+          id: '20 VU - karakter beban kerja masih mendominasi selisihnya',
+        },
+        {
+          en: '100 VU - endpoints converge to 1.19×–1.29× as shared resources saturate',
+          id: '100 VU - selisih antar endpoint menyempit ke 1,19×–1,29× saat resource bersama jenuh',
+        },
       ],
     },
   ],
   strategy: [
-    'constant-vus executor, 30-second runs at 20 and 100 VU.',
-    'Thresholds enforced by k6: p95 < 500 ms, http_req_failed < 1%, checks > 99%.',
-    'Payload equivalence verified in absolute bytes so a smaller response cannot fake a speed win.',
-    'k6 checks validate the body (count === 100) and the cache X-Cache: HIT header, not just status 200.',
-    'The Redis key is flushed before each cache run so a stale TTL cannot contaminate results.',
+    {
+      en: 'constant-vus executor, 30-second runs at 20 and 100 VU.',
+      id: 'Executor constant-vus, eksekusi 30 detik pada 20 dan 100 VU.',
+    },
+    {
+      en: 'Thresholds enforced by k6: p95 < 500 ms, http_req_failed < 1%, checks > 99%.',
+      id: 'Threshold ditegakkan oleh k6: p95 < 500 ms, http_req_failed < 1%, checks > 99%.',
+    },
+    {
+      en: 'Payload equivalence verified in absolute bytes so a smaller response cannot fake a speed win.',
+      id: 'Kesetaraan payload diverifikasi dalam byte absolut supaya response yang lebih kecil tidak memalsukan kemenangan kecepatan.',
+    },
+    {
+      en: 'k6 checks validate the body (count === 100) and the cache X-Cache: HIT header, not just status 200.',
+      id: 'Check k6 memvalidasi isi body (count === 100) dan header cache X-Cache: HIT, bukan cuma status 200.',
+    },
+    {
+      en: 'The Redis key is flushed before each cache run so a stale TTL cannot contaminate results.',
+      id: 'Key Redis dihapus sebelum tiap eksekusi cache supaya TTL sisa tidak mencemari hasil.',
+    },
   ],
   architecture: [
-    { label: 'k6 (container)', note: 'constant-vus load' },
-    { label: 'go-api / node-api', note: 'identical endpoints' },
-    { label: 'PostgreSQL 16', note: 'shared, 10,000 rows' },
-    { label: 'Redis 7', note: 'shared cache-aside' },
+    {
+      label: { en: 'k6 (container)', id: 'k6 (container)' },
+      note: { en: 'constant-vus load', id: 'beban constant-vus' },
+    },
+    {
+      label: 'go-api / node-api',
+      note: { en: 'identical endpoints', id: 'endpoint identik' },
+    },
+    {
+      label: 'PostgreSQL 16',
+      note: { en: 'shared, 10,000 rows', id: 'dipakai bersama, 10.000 baris' },
+    },
+    {
+      label: 'Redis 7',
+      note: { en: 'shared cache-aside', id: 'cache-aside bersama' },
+    },
   ],
   snippets: [
     {
-      caption: 'k6 checks assert the response body and cache state, not just the HTTP status.',
+      caption: {
+        en: 'k6 checks assert the response body and cache state, not just the HTTP status.',
+        id: 'Check k6 memeriksa isi response dan kondisi cache, bukan cuma status HTTP.',
+      },
       lang: 'javascript',
       code: `export const options = {
   scenarios: { load: { executor: 'constant-vus', vus: 100, duration: '30s' } },
@@ -98,7 +177,10 @@ export default function () {
 }`,
     },
     {
-      caption: 'One script covers every combination; the stack and load level come from env vars.',
+      caption: {
+        en: 'One script covers every combination; the stack and load level come from env vars.',
+        id: 'Satu script menangani semua kombinasi; stack dan tingkat beban diambil dari env var.',
+      },
       lang: 'bash',
       code: `docker run --rm -i --network bench \\
   -v "$PWD/k6:/scripts" grafana/k6 run \\
@@ -106,7 +188,10 @@ export default function () {
   /scripts/scenarios/products.js`,
     },
     {
-      caption: 'Compose healthchecks keep apps from starting before the database is ready.',
+      caption: {
+        en: 'Compose healthchecks keep apps from starting before the database is ready.',
+        id: 'Healthcheck Compose mencegah aplikasi start sebelum database siap.',
+      },
       lang: 'bash',
       code: `postgres:
   image: postgres:16-alpine
@@ -122,16 +207,24 @@ go-api:
     postgres: { condition: service_healthy }`,
     },
     {
-      caption: 'The cache key is deleted before each cache run so a leftover TTL cannot skew it.',
+      caption: {
+        en: 'The cache key is deleted before each cache run so a leftover TTL cannot skew it.',
+        id: 'Cache key dihapus sebelum tiap eksekusi cache supaya sisa TTL tidak membiaskan hasil.',
+      },
       lang: 'bash',
       code: `docker exec bench-redis redis-cli DEL products:top100`,
     },
   ],
   benchmarkChart: {
-    title: 'Throughput (requests / second)',
+    title: {
+      en: 'Throughput (requests / second)',
+      id: 'Throughput (request / detik)',
+    },
     unit: 'RPS',
-    caption:
-      'Requests per second per endpoint, Go vs Node.js. Go leads on throughput at every endpoint and both load levels. Source: k6/results/*.json.',
+    caption: {
+      en: 'Requests per second per endpoint, Go vs Node.js. Go leads on throughput at every endpoint and both load levels. Source: k6/results/*.json.',
+      id: 'Request per detik per endpoint, Go vs Node.js. Go unggul pada throughput di semua endpoint dan kedua tingkat beban. Sumber: k6/results/*.json.',
+    },
     levels: [
       {
         label: '20 VU',
@@ -154,16 +247,36 @@ go-api:
     ],
   },
   results: [
-    { value: '712,788', label: 'Requests', note: 'across 16 runs' },
-    { value: '0.00%', label: 'HTTP failures' },
-    { value: '100%', label: 'Functional checks passed' },
-    { value: '1.19–1.65×', label: 'Go throughput lead' },
-    { value: '413.36 ms', label: 'Highest p95', note: 'below the 500 ms threshold' },
+    {
+      value: '712,788',
+      label: { en: 'Requests', id: 'Request' },
+      note: { en: 'across 16 runs', id: 'dari 16 eksekusi' },
+    },
+    { value: '0.00%', label: { en: 'HTTP failures', id: 'Kegagalan HTTP' } },
+    {
+      value: '100%',
+      label: { en: 'Functional checks passed', id: 'Check fungsional lolos' },
+    },
+    {
+      value: '1.19–1.65×',
+      label: { en: 'Go throughput lead', id: 'Keunggulan throughput Go' },
+    },
+    {
+      value: '413.36 ms',
+      label: { en: 'Highest p95', id: 'p95 tertinggi' },
+      note: { en: 'below the 500 ms threshold', id: 'di bawah threshold 500 ms' },
+    },
   ],
   evidence: [
     {
-      alt: 'Interactive benchmark dashboard for the Go vs Node.js study',
-      caption: 'Interactive dashboard - see the live version linked below.',
+      alt: {
+        en: 'Interactive benchmark dashboard for the Go vs Node.js study',
+        id: 'Dashboard benchmark interaktif untuk studi Go vs Node.js',
+      },
+      caption: {
+        en: 'Interactive dashboard - see the live version linked below.',
+        id: 'Dashboard interaktif - lihat versi live-nya di tautan bawah.',
+      },
       todo: 'TODO(fajar): add a screenshot of the dashboard at public/evidence/go-vs-node-dashboard.png',
     },
   ],

@@ -2,27 +2,33 @@
 
 import { useState } from 'react';
 import type { Project, ProjectTag } from '@/lib/types';
+import { ui } from '@/content/ui';
+import { type Locale, t } from '@/lib/i18n';
 import { ProjectCard } from './ProjectCard';
 
-const filters: Array<'All' | ProjectTag> = [
-  'All',
-  'Automation',
-  'API',
-  'Manual',
-  'Performance',
-];
+// Nama tag dipakai apa adanya di kedua bahasa (istilah QA yang lazim), hanya
+// "All" yang diterjemahkan.
+const TAGS: ProjectTag[] = ['Automation', 'API', 'Manual', 'Performance'];
+const ALL = 'All' as const;
 
-export function WorkFilter({ projects }: { projects: Project[] }) {
-  const [active, setActive] = useState<(typeof filters)[number]>('All');
+type Filter = typeof ALL | ProjectTag;
 
-  const visible =
-    active === 'All' ? projects : projects.filter((p) => p.tags.includes(active));
+export function WorkFilter({ projects, lang }: { projects: Project[]; lang: Locale }) {
+  const [active, setActive] = useState<Filter>(ALL);
+
+  const visible = active === ALL ? projects : projects.filter((p) => p.tags.includes(active));
+  const filters: Filter[] = [ALL, ...TAGS];
 
   return (
     <div>
-      <div role="group" aria-label="Filter projects" className="flex flex-wrap gap-2">
+      <div
+        role="group"
+        aria-label={t(ui.a11y.filterProjects, lang)}
+        className="flex flex-wrap gap-2"
+      >
         {filters.map((f) => {
           const isActive = active === f;
+          const label = f === ALL ? t(ui.work.filterAll, lang) : f;
           return (
             <button
               key={f}
@@ -35,7 +41,7 @@ export function WorkFilter({ projects }: { projects: Project[] }) {
                   : 'border-border bg-surface text-muted hover:border-accent hover:text-accent'
               }`}
             >
-              {f}
+              {label}
             </button>
           );
         })}
@@ -44,11 +50,11 @@ export function WorkFilter({ projects }: { projects: Project[] }) {
       {visible.length > 0 ? (
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
           {visible.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
+            <ProjectCard key={project.slug} project={project} lang={lang} />
           ))}
         </div>
       ) : (
-        <p className="mt-8 text-muted">No projects match this filter.</p>
+        <p className="mt-8 text-muted">{t(ui.work.emptyFilter, lang)}</p>
       )}
     </div>
   );

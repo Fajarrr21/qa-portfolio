@@ -1,16 +1,20 @@
 import Link from 'next/link';
 import { ArrowRight, ArrowUpRight, Lock } from 'lucide-react';
 import type { Project } from '@/lib/types';
+import { ui } from '@/content/ui';
+import { type Locale, localePath, t } from '@/lib/i18n';
 import { Chip } from './primitives';
 
 export function ProjectCard({
   project,
   index,
+  lang,
 }: {
   project: Project;
   index?: number;
+  lang: Locale;
 }) {
-  const href = `/work/${project.slug}`;
+  const href = localePath(`/work/${project.slug}`, lang);
   const github = project.links.find((l) => l.label === 'GitHub');
   const isProfessional = project.label === 'Professional work';
 
@@ -20,8 +24,8 @@ export function ProjectCard({
         <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted">
           {isProfessional && <Lock size={12} aria-hidden />}
           {isProfessional && project.professionalOrg
-            ? `Professional work · ${project.professionalOrg}`
-            : project.label}
+            ? `${t(ui.project.professional, lang)} · ${project.professionalOrg}`
+            : t(isProfessional ? ui.project.professional : ui.project.personal, lang)}
         </span>
         {typeof index === 'number' && (
           <span className="text-sm font-semibold tabular-nums text-border">
@@ -33,17 +37,17 @@ export function ProjectCard({
       <h3 className="text-lg font-semibold tracking-tight">
         <Link href={href} className="transition-colors group-hover:text-accent">
           <span className="absolute inset-0" aria-hidden />
-          {project.title}
+          {t(project.title, lang)}
         </Link>
       </h3>
-      <p className="mt-1 text-sm text-muted">{project.subtitle}</p>
+      <p className="mt-1 text-sm text-muted">{t(project.subtitle, lang)}</p>
 
       {project.metrics.length > 0 && (
         <div className="mt-4 flex flex-wrap gap-2">
-          {project.metrics.slice(0, 3).map((m) => (
-            <Chip key={m.label}>
+          {project.metrics.slice(0, 3).map((m, i) => (
+            <Chip key={i}>
               <span className="font-semibold text-text">{m.value}</span>
-              <span className="ml-1 text-muted">{m.label}</span>
+              <span className="ml-1 text-muted">{t(m.label, lang)}</span>
             </Chip>
           ))}
         </div>
@@ -51,7 +55,7 @@ export function ProjectCard({
 
       <div className="relative mt-6 flex items-center gap-4 pt-2">
         <span className="inline-flex items-center gap-1 text-sm font-medium text-accent">
-          View case study
+          {t(ui.project.viewCaseStudy, lang)}
           <ArrowRight
             size={16}
             className="transition-transform duration-150 group-hover:translate-x-0.5"

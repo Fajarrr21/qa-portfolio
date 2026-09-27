@@ -22,6 +22,12 @@ import type { Bug } from '@/lib/types';
 //   evidence     : Screenshot/video (isi src relatif ke /public, atau biarkan
 //                  todo untuk placeholder). Boleh array kosong.
 //   status       : mis. "Open", "In review", "Fixed", "Won't fix", "Duplicate".
+//
+// DWIBAHASA: field teks bertipe Text (lihat lib/i18n.ts). Tulis string biasa
+// kalau isinya sama di kedua bahasa, atau { en: '...', id: '...' } kalau perlu
+// terjemahan. Contoh:
+//   title: { en: 'Invoice total ignores discount', id: 'Total tagihan mengabaikan diskon' },
+//   type: 'Functional',
 // ============================================================================
 
 export const exampleBug: Bug = {

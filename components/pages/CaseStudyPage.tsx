@@ -1,9 +1,11 @@
-import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import type { ReactNode } from 'react';
+import Link from 'next/link';
 import { Github, ExternalLink as ExternalLinkIcon, ArrowLeft, Lock } from 'lucide-react';
-import { getProject, getProjectSlugs } from '@/lib/projects';
+import { getProject } from '@/lib/projects';
 import { bugs } from '@/content/bugs';
+import { ui } from '@/content/ui';
+import { type Locale, localePath, t, tList } from '@/lib/i18n';
 import { Container, ButtonExternal, Chip } from '@/components/primitives';
 import { ScopeTree } from '@/components/case-study/ScopeTree';
 import { FlowDiagram } from '@/components/case-study/FlowDiagram';
@@ -12,22 +14,6 @@ import { MetricTileGrid } from '@/components/case-study/MetricTile';
 import { Evidence, visibleEvidence } from '@/components/case-study/Evidence';
 import { BenchmarkChart } from '@/components/case-study/BenchmarkChart';
 import { BugLog } from '@/components/case-study/BugList';
-import Link from 'next/link';
-
-export function generateStaticParams() {
-  return getProjectSlugs().map((slug) => ({ slug }));
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-  const { slug } = await params;
-  const project = getProject(slug);
-  if (!project) return { title: 'Not found' };
-  return { title: project.title, description: project.subtitle };
-}
 
 function CaseSection({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -43,12 +29,7 @@ function linkIcon(label: string) {
   return <ExternalLinkIcon size={16} />;
 }
 
-export default async function CaseStudyPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
+export function CaseStudyPage({ slug, lang }: { slug: string; lang: Locale }) {
   const project = getProject(slug);
   if (!project) notFound();
 
@@ -59,11 +40,11 @@ export default async function CaseStudyPage({
     <article className="section pt-10">
       <Container className="max-w-content">
         <Link
-          href="/work"
+          href={localePath('/work', lang)}
           className="inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-accent"
         >
           <ArrowLeft size={15} />
-          All work
+          {t(ui.project.allWork, lang)}
         </Link>
 
         {/* Header */}
@@ -71,30 +52,35 @@ export default async function CaseStudyPage({
           <span className="inline-flex items-center gap-1.5 text-sm font-medium text-muted">
             {isProfessional && <Lock size={13} aria-hidden />}
             {isProfessional && project.professionalOrg
-              ? `Professional work · ${project.professionalOrg}`
-              : project.label}
+              ? `${t(ui.project.professional, lang)} · ${project.professionalOrg}`
+              : t(isProfessional ? ui.project.professional : ui.project.personal, lang)}
           </span>
           <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
-            {project.title}
+            {t(project.title, lang)}
           </h1>
-          <p className="mt-2 text-lg text-muted">{project.subtitle}</p>
+          <p className="mt-2 text-lg text-muted">{t(project.subtitle, lang)}</p>
 
           {project.techStack.length > 0 && (
             <div className="mt-5 flex flex-wrap gap-2">
-              {project.techStack.map((t) => (
-                <Chip key={t}>{t}</Chip>
+              {project.techStack.map((tech) => (
+                <Chip key={tech}>{tech}</Chip>
               ))}
             </div>
           )}
 
           {project.metrics.length > 0 && (
             <dl className="mt-6 flex flex-wrap gap-x-10 gap-y-4">
-              {project.metrics.map((m) => (
-                <div key={m.label}>
-                  <dd className="text-2xl font-semibold tracking-tight text-accent">{m.value}</dd>
-                  <dt className="text-sm text-muted">{m.label}</dt>
-                </div>
-              ))}
+              {project.metrics.map((m) => {
+                const label = t(m.label, lang);
+                return (
+                  <div key={`${label}-${m.value}`}>
+                    <dd className="text-2xl font-semibold tracking-tight text-accent">
+                      {m.value}
+                    </dd>
+                    <dt className="text-sm text-muted">{label}</dt>
+                  </div>
+                );
+              })}
             </dl>
           )}
 
@@ -112,9 +98,9 @@ export default async function CaseStudyPage({
 
         {/* Overview */}
         {project.overview && project.overview.length > 0 && (
-          <CaseSection title="Overview">
+          <CaseSection title={t(ui.caseStudy.overview, lang)}>
             <div className="max-w-3xl space-y-4 text-muted">
-              {project.overview.map((p, i) => (
+              {tList(project.overview, lang).map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
             </div>
@@ -123,16 +109,16 @@ export default async function CaseStudyPage({
 
         {/* Objective */}
         {project.objective && (
-          <CaseSection title="Objective">
-            <p className="max-w-3xl text-muted">{project.objective}</p>
+          <CaseSection title={t(ui.caseStudy.objective, lang)}>
+            <p className="max-w-3xl text-muted">{t(project.objective, lang)}</p>
           </CaseSection>
         )}
 
         {/* Benchmark design (go-vs-node) */}
         {project.benchmarkDesign && project.benchmarkDesign.length > 0 && (
-          <CaseSection title="Benchmark design">
+          <CaseSection title={t(ui.caseStudy.benchmarkDesign, lang)}>
             <ul className="max-w-3xl space-y-2.5">
-              {project.benchmarkDesign.map((b, i) => (
+              {tList(project.benchmarkDesign, lang).map((b, i) => (
                 <li key={i} className="flex gap-3 text-muted">
                   <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                   {b}
@@ -144,16 +130,16 @@ export default async function CaseStudyPage({
 
         {/* Testing scope */}
         {project.scope && project.scope.length > 0 && (
-          <CaseSection title="Testing scope">
-            <ScopeTree nodes={project.scope} />
+          <CaseSection title={t(ui.caseStudy.scope, lang)}>
+            <ScopeTree nodes={project.scope} lang={lang} />
           </CaseSection>
         )}
 
         {/* Test strategy */}
         {project.strategy && project.strategy.length > 0 && (
-          <CaseSection title="Test strategy">
+          <CaseSection title={t(ui.caseStudy.strategy, lang)}>
             <ul className="max-w-3xl space-y-2.5">
-              {project.strategy.map((s, i) => (
+              {tList(project.strategy, lang).map((s, i) => (
                 <li key={i} className="flex gap-3 text-muted">
                   <span aria-hidden className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
                   {s}
@@ -165,24 +151,24 @@ export default async function CaseStudyPage({
 
         {/* Measurement integrity (go-vs-node) */}
         {project.measurementIntegrity && (
-          <CaseSection title="Measurement integrity">
-            <p className="max-w-3xl text-muted">{project.measurementIntegrity}</p>
+          <CaseSection title={t(ui.caseStudy.measurementIntegrity, lang)}>
+            <p className="max-w-3xl text-muted">{t(project.measurementIntegrity, lang)}</p>
           </CaseSection>
         )}
 
         {/* Architecture */}
         {project.architecture && project.architecture.length > 0 && (
-          <CaseSection title="Architecture">
-            <FlowDiagram steps={project.architecture} />
+          <CaseSection title={t(ui.caseStudy.architecture, lang)}>
+            <FlowDiagram steps={project.architecture} lang={lang} />
           </CaseSection>
         )}
 
         {/* Implementation */}
         {project.snippets && project.snippets.length > 0 && (
-          <CaseSection title="Implementation">
+          <CaseSection title={t(ui.caseStudy.implementation, lang)}>
             <div className="space-y-8">
               {project.snippets.map((snippet, i) => (
-                <CodeBlock key={i} snippet={snippet} />
+                <CodeBlock key={i} snippet={snippet} lang={lang} />
               ))}
             </div>
           </CaseSection>
@@ -190,35 +176,35 @@ export default async function CaseStudyPage({
 
         {/* Benchmark chart */}
         {project.benchmarkChart && (
-          <CaseSection title="Results - throughput">
-            <BenchmarkChart chart={project.benchmarkChart} />
+          <CaseSection title={t(ui.caseStudy.resultsThroughput, lang)}>
+            <BenchmarkChart chart={project.benchmarkChart} lang={lang} />
           </CaseSection>
         )}
 
         {/* Results */}
         {project.results && project.results.length > 0 && (
-          <CaseSection title="Results">
-            <MetricTileGrid tiles={project.results} />
+          <CaseSection title={t(ui.caseStudy.results, lang)}>
+            <MetricTileGrid tiles={project.results} lang={lang} />
           </CaseSection>
         )}
 
         {/* Evidence */}
         {evidenceToShow.length > 0 && (
-          <CaseSection title="Evidence">
-            <Evidence items={project.evidence ?? []} />
+          <CaseSection title={t(ui.caseStudy.evidence, lang)}>
+            <Evidence items={project.evidence ?? []} lang={lang} />
           </CaseSection>
         )}
 
         {/* Bug log (bug-hunting template) */}
         {slug === 'bug-hunting' && (
-          <CaseSection title="Bug log">
-            <BugLog bugs={bugs} />
+          <CaseSection title={t(ui.caseStudy.bugLog, lang)}>
+            <BugLog bugs={bugs} lang={lang} />
           </CaseSection>
         )}
 
         {/* Links */}
         {project.links.length > 0 && (
-          <CaseSection title="Links">
+          <CaseSection title={t(ui.caseStudy.links, lang)}>
             <div className="flex flex-wrap gap-3">
               {project.links.map((l) => (
                 <ButtonExternal key={l.href} href={l.href}>

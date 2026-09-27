@@ -1,5 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import type { Bug, Severity } from '@/lib/types';
+import { ui } from '@/content/ui';
+import { type Locale, t, tList } from '@/lib/i18n';
 import { Evidence, visibleEvidence } from './Evidence';
 
 const severityClass: Record<Severity, string> = {
@@ -29,7 +31,7 @@ function BugField({ label, children }: { label: string; children: React.ReactNod
 }
 
 // Detail satu bug - dirender sebagai section beranchor (#id) di halaman bug-hunting.
-function BugDetail({ bug }: { bug: Bug }) {
+function BugDetail({ bug, lang }: { bug: Bug; lang: Locale }) {
   const evidenceToShow = visibleEvidence(bug.evidence);
   return (
     <section
@@ -39,53 +41,49 @@ function BugDetail({ bug }: { bug: Bug }) {
       <div className="flex flex-wrap items-center gap-3">
         <span className="font-mono text-sm text-muted">{bug.id}</span>
         <SeverityBadge severity={bug.severity} />
-        <span className="text-sm text-muted">{bug.type}</span>
+        <span className="text-sm text-muted">{t(bug.type, lang)}</span>
       </div>
-      <h3 className="mt-2 text-lg font-semibold">{bug.title}</h3>
+      <h3 className="mt-2 text-lg font-semibold">{t(bug.title, lang)}</h3>
 
       <div className="mt-5 grid gap-5 sm:grid-cols-2">
-        <BugField label="Context">{bug.context}</BugField>
-        <BugField label="Status">{bug.status}</BugField>
-        <BugField label="Steps to reproduce">
+        <BugField label={t(ui.bug.context, lang)}>{t(bug.context, lang)}</BugField>
+        <BugField label={t(ui.bug.status, lang)}>{t(bug.status, lang)}</BugField>
+        <BugField label={t(ui.bug.steps, lang)}>
           <ol className="list-decimal space-y-1 pl-5 text-muted">
-            {bug.steps.map((s, i) => (
+            {tList(bug.steps, lang).map((s, i) => (
               <li key={i}>{s}</li>
             ))}
           </ol>
         </BugField>
         <div className="space-y-4">
-          <BugField label="Expected">
-            <span className="text-muted">{bug.expected}</span>
+          <BugField label={t(ui.bug.expected, lang)}>
+            <span className="text-muted">{t(bug.expected, lang)}</span>
           </BugField>
-          <BugField label="Actual">
-            <span className="text-muted">{bug.actual}</span>
+          <BugField label={t(ui.bug.actual, lang)}>
+            <span className="text-muted">{t(bug.actual, lang)}</span>
           </BugField>
         </div>
         <div className="sm:col-span-2">
-          <BugField label="Investigation">
-            <span className="text-muted">{bug.investigation}</span>
+          <BugField label={t(ui.bug.investigation, lang)}>
+            <span className="text-muted">{t(bug.investigation, lang)}</span>
           </BugField>
         </div>
       </div>
 
       {evidenceToShow.length > 0 && (
         <div className="mt-5">
-          <Evidence items={bug.evidence} />
+          <Evidence items={bug.evidence} lang={lang} />
         </div>
       )}
     </section>
   );
 }
 
-export function BugLog({ bugs }: { bugs: Bug[] }) {
+export function BugLog({ bugs, lang }: { bugs: Bug[]; lang: Locale }) {
   if (bugs.length === 0) {
     return (
       <div className="rounded border border-dashed border-border bg-surface p-6">
-        <p className="text-sm text-muted">
-          No bugs published yet. This is a template - each bug is one file under{' '}
-          <code className="font-mono text-xs text-text">content/bugs/</code>, recording id, title,
-          severity, type, context, steps, expected, actual, investigation, evidence, and status.
-        </p>
+        <p className="text-sm text-muted">{t(ui.bug.emptyLog, lang)}</p>
       </div>
     );
   }
@@ -105,11 +103,11 @@ export function BugLog({ bugs }: { bugs: Bug[] }) {
                 <SeverityBadge severity={bug.severity} />
               </div>
               <h3 className="mt-2 font-medium transition-colors group-hover:text-accent">
-                {bug.title}
+                {t(bug.title, lang)}
               </h3>
-              <p className="mt-1 text-sm text-muted">{bug.type}</p>
+              <p className="mt-1 text-sm text-muted">{t(bug.type, lang)}</p>
               <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent">
-                View detail
+                {t(ui.bug.viewDetail, lang)}
                 <ArrowRight
                   size={15}
                   className="transition-transform group-hover:translate-x-0.5"
@@ -123,7 +121,7 @@ export function BugLog({ bugs }: { bugs: Bug[] }) {
       {/* Detail per bug (beranchor) */}
       <div className="space-y-6">
         {bugs.map((bug) => (
-          <BugDetail key={bug.id} bug={bug} />
+          <BugDetail key={bug.id} bug={bug} lang={lang} />
         ))}
       </div>
     </div>

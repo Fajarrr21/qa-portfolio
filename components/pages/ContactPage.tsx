@@ -1,14 +1,10 @@
-import type { Metadata } from 'next';
 import { Github, Linkedin, Mail } from 'lucide-react';
 import { site } from '@/content/site';
+import { ui } from '@/content/ui';
+import { type Locale, t } from '@/lib/i18n';
 import { Container, SectionHeading } from '@/components/primitives';
 
-export const metadata: Metadata = {
-  title: 'Contact',
-  description: 'Open to QA Engineer opportunities, testing projects, and collaborations.',
-};
-
-export default function ContactPage() {
+export function ContactPage({ lang }: { lang: Locale }) {
   const channels = [
     {
       label: 'Email',
@@ -37,9 +33,9 @@ export default function ContactPage() {
     <section className="section">
       <Container>
         <SectionHeading
-          eyebrow="Contact"
-          title="Let's connect"
-          description="Open to QA Engineer opportunities, testing projects, and collaborations."
+          eyebrow={t(ui.contact.eyebrow, lang)}
+          title={t(ui.contact.title, lang)}
+          description={t(ui.contact.description, lang)}
         />
         <ul className="mt-10 grid max-w-2xl gap-3 sm:grid-cols-3">
           {channels.map(({ label, value, href, icon: Icon, external }) => (
