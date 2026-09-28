@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { CaseStudyPage } from '@/components/pages/CaseStudyPage';
 import { getProject, getProjectSlugs } from '@/lib/projects';
 import { t } from '@/lib/i18n';
-import { alternatesFor } from '@/lib/metadata';
+import { pageMeta } from '@/lib/metadata';
 
 export function generateStaticParams() {
   return getProjectSlugs().map((slug) => ({ slug }));
@@ -16,11 +16,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) return { title: 'Not found' };
-  return {
-    title: t(project.title, 'en'),
-    description: t(project.subtitle, 'en'),
-    alternates: alternatesFor(`/work/${slug}`, 'en'),
-  };
+  return pageMeta(
+    `/work/${slug}`,
+    'en',
+    t(project.title, 'en'),
+    t(project.subtitle, 'en'),
+  );
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {

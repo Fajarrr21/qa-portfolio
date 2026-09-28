@@ -4,7 +4,7 @@ import { RootShell } from '@/components/RootShell';
 import { site } from '@/content/site';
 import { ui } from '@/content/ui';
 import { t } from '@/lib/i18n';
-import { alternatesFor } from '@/lib/metadata';
+import { alternatesFor, socialFor } from '@/lib/metadata';
 
 // Root layout versi Inggris (<html lang="en">). Versi Indonesia punya root
 // layout sendiri di app/(id)/layout.tsx - itulah sebabnya tidak ada
@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   description: t(ui.meta.siteDescription, 'en'),
   metadataBase: new URL('https://fajarardians.my.id'),
   alternates: alternatesFor('/', 'en'),
+  ...socialFor('/', 'en', t(ui.meta.siteDescription, 'en')),
 };
 
 export default function EnglishLayout({ children }: { children: ReactNode }) {
