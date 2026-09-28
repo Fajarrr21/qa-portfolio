@@ -307,15 +307,17 @@ export default LoginPage`,
   ],
   evidence: [
     {
+      src: '/evidence/orangehrm-report.png',
+      width: 2880,
+      height: 1800,
       alt: {
-        en: 'Mochawesome report summary for the OrangeHRM suite',
-        id: 'Ringkasan laporan Mochawesome untuk suite OrangeHRM',
+        en: 'Mochawesome report for the OrangeHRM suite: 105 tests, 105 passed, 0 failed, with each test labelled by its test case ID',
+        id: 'Laporan Mochawesome suite OrangeHRM: 105 test, 105 lulus, 0 gagal, dengan setiap test diberi label test case ID-nya',
       },
       caption: {
-        en: 'Mochawesome report - see the live version linked below.',
-        id: 'Laporan Mochawesome - lihat versi live-nya di tautan bawah.',
+        en: 'Mochawesome report: 105 tests across 4 suites, all passing. Every test carries its test case ID (TC-DIR001 and so on), so a result maps straight back to the test case documentation.',
+        id: 'Laporan Mochawesome: 105 test di 4 suite, semuanya lulus. Setiap test membawa test case ID-nya (TC-DIR001 dan seterusnya), jadi satu hasil bisa ditelusuri langsung ke dokumentasi test case.',
       },
-      todo: 'TODO(fajar): add a screenshot of the Mochawesome report at public/evidence/orangehrm-report.png',
     },
   ],
 };

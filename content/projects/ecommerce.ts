@@ -294,15 +294,17 @@ const booking = {
   ],
   evidence: [
     {
+      src: '/evidence/ecommerce-report.png',
+      width: 2880,
+      height: 1800,
       alt: {
-        en: 'Mochawesome report summary for the e-commerce suite',
-        id: 'Ringkasan laporan Mochawesome untuk suite e-commerce',
+        en: 'Mochawesome report for the e-commerce suite: 38 tests across 9 spec files, 38 passed, 0 failed',
+        id: 'Laporan Mochawesome suite e-commerce: 38 test di 9 file spec, 38 lulus, 0 gagal',
       },
       caption: {
-        en: 'Mochawesome report - see the live version linked below.',
-        id: 'Laporan Mochawesome - lihat versi live-nya di tautan bawah.',
+        en: 'Mochawesome report: 38 tests across 9 spec files, all passing. Test names state the behaviour being checked, so a failure reads as a broken requirement rather than a broken selector.',
+        id: 'Laporan Mochawesome: 38 test di 9 file spec, semuanya lulus. Nama test menyebutkan perilaku yang diperiksa, jadi kegagalan terbaca sebagai kebutuhan yang rusak, bukan sekadar selector yang meleset.',
       },
-      todo: 'TODO(fajar): add a screenshot of the Mochawesome report at public/evidence/ecommerce-report.png',
     },
   ],
 };

@@ -269,15 +269,17 @@ go-api:
   ],
   evidence: [
     {
+      src: '/evidence/go-vs-node-dashboard.png',
+      width: 2880,
+      height: 1800,
       alt: {
-        en: 'Interactive benchmark dashboard for the Go vs Node.js study',
-        id: 'Dashboard benchmark interaktif untuk studi Go vs Node.js',
+        en: "Benchmark dashboard chart: Go's throughput lead over Node.js per endpoint, at 20 VU and at 100 VU",
+        id: 'Chart dashboard benchmark: keunggulan throughput Go atas Node.js per endpoint, pada 20 VU dan 100 VU',
       },
       caption: {
-        en: 'Interactive dashboard - see the live version linked below.',
-        id: 'Dashboard interaktif - lihat versi live-nya di tautan bawah.',
+        en: "Throughput ratio, Go over Node.js. At 20 VU the gap swings by workload (1.65x down to 1.28x); at 100 VU every endpoint lands in a 1.19x-1.29x band. The lead narrows as load rises - the finding the raw throughput numbers alone do not show.",
+        id: 'Rasio throughput Go terhadap Node.js. Pada 20 VU selisihnya berayun tergantung workload (1,65x sampai 1,28x); pada 100 VU seluruh endpoint masuk rentang 1,19x-1,29x. Keunggulannya menyempit saat beban naik - temuan yang tidak terlihat dari angka throughput mentah saja.',
       },
-      todo: 'TODO(fajar): add a screenshot of the dashboard at public/evidence/go-vs-node-dashboard.png',
     },
   ],
 };

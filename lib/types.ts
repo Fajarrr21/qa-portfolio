@@ -73,6 +73,12 @@ export interface EvidenceItem {
   alt: Text;
   caption: Text;
   kind?: 'image' | 'video';
+  /**
+   * Ukuran asli berkas, dipakai untuk aspect-ratio supaya halaman tidak
+   * bergeser saat gambar selesai dimuat. Wajib diisi kalau `src` ada.
+   */
+  width?: number;
+  height?: number;
   /** Pesan TODO ketika file belum ada (hanya tampil di dev). */
   todo?: Text;
 }

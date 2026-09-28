@@ -21,10 +21,27 @@ export function Evidence({ items, lang }: { items: EvidenceItem[]; lang: Locale 
           <figure key={i} className="overflow-hidden rounded border border-border bg-surface">
             {item.src ? (
               item.kind === 'video' ? (
-                <video src={asset(item.src)} controls className="w-full" aria-label={alt} />
+                <video
+                  src={asset(item.src)}
+                  controls
+                  width={item.width}
+                  height={item.height}
+                  className="h-auto w-full"
+                  aria-label={alt}
+                />
               ) : (
+                // width & height dipasang supaya browser menyediakan ruangnya
+                // lebih dulu - tanpa ini halaman bergeser saat gambar dimuat.
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={asset(item.src)} alt={alt} className="w-full" />
+                <img
+                  src={asset(item.src)}
+                  alt={alt}
+                  width={item.width}
+                  height={item.height}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-auto w-full"
+                />
               )
             ) : (
               // Placeholder TODO - hanya dirender di dev (lihat visibleEvidence).
