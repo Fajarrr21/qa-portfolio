@@ -1,5 +1,15 @@
-import { Github, Linkedin, Mail, ClipboardList, Workflow, Webhook, Gauge } from 'lucide-react';
+import {
+  Github,
+  Linkedin,
+  Mail,
+  Download,
+  ClipboardList,
+  Workflow,
+  Webhook,
+  Gauge,
+} from 'lucide-react';
 import { site } from '@/content/site';
+import { asset } from '@/lib/basePath';
 import { ui } from '@/content/ui';
 import { getFeaturedProjects } from '@/lib/projects';
 import { type Locale, localePath, t } from '@/lib/i18n';
@@ -36,6 +46,16 @@ export function HomePage({ lang }: { lang: Locale }) {
             <ButtonLink href={localePath('/work', lang)}>
               {t(ui.home.heroCta, lang)}
             </ButtonLink>
+            {/* Unduh CV adalah aksi nomor satu recruiter; sebelumnya cuma ada
+                di dropdown navbar. Berkasnya mengikuti bahasa halaman. */}
+            <a
+              href={asset(site.resume[lang])}
+              download
+              className="inline-flex items-center justify-center gap-2 rounded border border-border bg-surface px-4 py-2.5 text-sm font-medium text-text transition-colors duration-150 hover:border-accent hover:text-accent"
+            >
+              <Download size={16} />
+              {t(ui.home.downloadCv, lang)}
+            </a>
             <ButtonExternal href={site.links.github}>
               <Github size={16} />
               GitHub

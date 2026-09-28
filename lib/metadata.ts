@@ -3,10 +3,21 @@ import { site } from '@/content/site';
 import { asset } from './basePath';
 import { DEFAULT_LOCALE, LOCALES, type Locale, localePath, t } from './i18n';
 
+/** Asal situs di production. Satu-satunya tempat URL ini ditulis. */
+export const SITE_URL = 'https://fajarardians.my.id';
+
+/** Path netral yang punya halaman sendiri di kedua bahasa (tanpa case study). */
+export const STATIC_PATHS = ['/', '/work', '/about', '/contact'] as const;
+
 // next.config.mjs memakai trailingSlash: true, jadi URL kanonik & hreflang
 // harus diakhiri garis miring agar cocok dengan file yang benar-benar terbit.
-function withSlash(path: string): string {
+export function withSlash(path: string): string {
   return path.endsWith('/') ? path : `${path}/`;
+}
+
+/** URL absolut untuk satu path netral pada satu bahasa. Dipakai sitemap & JSON-LD. */
+export function absoluteUrl(neutralPath: string, lang: Locale): string {
+  return `${SITE_URL}${withSlash(localePath(neutralPath, lang))}`;
 }
 
 /**

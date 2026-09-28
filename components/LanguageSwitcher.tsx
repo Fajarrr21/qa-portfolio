@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 import { Languages } from 'lucide-react';
 import { ui } from '@/content/ui';
+import { asset } from '@/lib/basePath';
 import {
   LOCALES,
   LOCALE_LABELS,
@@ -10,6 +11,14 @@ import {
   switchLocalePath,
   t,
 } from '@/lib/i18n';
+
+// <a> biasa tidak mendapat basePath otomatis dari Next (beda dengan <Link>),
+// jadi dilewatkan asset(). Dengan basePath kosong hasilnya sama persis; yang
+// dijaga adalah kalau situs dipindah ke sub-path seperti /qa-portfolio.
+function localeHref(pathname: string, target: Locale): string {
+  const path = switchLocalePath(pathname, target);
+  return asset(path === '/' ? '/' : `${path}/`);
+}
 
 // Pemindah bahasa. Memakai <a> biasa, bukan next/link, karena versi Inggris dan
 // Indonesia memakai root layout yang berbeda (atribut <html lang>), jadi
@@ -48,7 +57,7 @@ export function LanguageSwitcher({
         ) : (
           <a
             key={locale}
-            href={`${switchLocalePath(pathname, locale)}/`.replace(/\/{2,}$/, '/')}
+            href={localeHref(pathname, locale)}
             hrefLang={locale}
             aria-label={label.full}
             className="rounded px-2 py-1 text-xs font-semibold text-muted transition-colors hover:bg-surface hover:text-accent"

@@ -28,6 +28,7 @@ export const ui = {
 
   home: {
     heroCta: { en: 'Explore my work', id: 'Lihat proyek saya' },
+    downloadCv: { en: 'Download CV', id: 'Unduh CV' },
     whatIDoEyebrow: { en: 'What I do', id: 'Yang saya kerjakan' },
     whatIDoTitle: {
       en: 'Testing across the stack',
@@ -133,6 +134,8 @@ export const ui = {
     resultsThroughput: { en: 'Results - throughput', id: 'Hasil - throughput' },
     results: { en: 'Results', id: 'Hasil' },
     evidence: { en: 'Evidence', id: 'Bukti' },
+    showAsTable: { en: 'Show as table', id: 'Tampilkan sebagai tabel' },
+    loadLevel: { en: 'Load', id: 'Beban' },
     bugLog: { en: 'Bug log', id: 'Catatan bug' },
     links: { en: 'Links', id: 'Tautan' },
     illustrative: {

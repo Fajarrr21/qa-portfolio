@@ -33,6 +33,13 @@ export function Navbar({ lang }: { lang: Locale }) {
   const [resumeOpen, setResumeOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const resumeRef = useRef<HTMLDivElement>(null);
+  const resumeToggleRef = useRef<HTMLButtonElement>(null);
+  const mobileToggleRef = useRef<HTMLButtonElement>(null);
+
+  // Cermin state untuk dibaca di dalam listener. Listener-nya dipasang sekali
+  // (deps kosong), jadi ia tidak bisa membaca state terbaru secara langsung.
+  const openRef = useRef({ resume: false, mobile: false });
+  openRef.current = { resume: resumeOpen, mobile: mobileOpen };
 
   // Tutup dropdown resume saat klik di luar / tekan Escape.
   useEffect(() => {
@@ -42,9 +49,20 @@ export function Navbar({ lang }: { lang: Locale }) {
       }
     }
     function onKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') {
+      if (e.key !== 'Escape') return;
+
+      // Kembalikan fokus ke tombol pemicunya masing-masing - jangan biarkan
+      // fokus menggantung di elemen yang baru dilepas dari DOM. Hanya yang
+      // memang sedang terbuka; tombol mobile ter-hidden di lebar desktop dan
+      // memfokuskannya dari sana justru membuat fokus hilang entah ke mana.
+      const { resume, mobile } = openRef.current;
+      if (resume) {
         setResumeOpen(false);
+        resumeToggleRef.current?.focus();
+      }
+      if (mobile) {
         setMobileOpen(false);
+        mobileToggleRef.current?.focus();
       }
     }
     document.addEventListener('mousedown', onClick);
@@ -95,10 +113,13 @@ export function Navbar({ lang }: { lang: Locale }) {
           {/* Resume dropdown */}
           <div ref={resumeRef} className="relative">
             <button
+              ref={resumeToggleRef}
               type="button"
               onClick={() => setResumeOpen((v) => !v)}
               aria-expanded={resumeOpen}
-              aria-haspopup="menu"
+              // "true" (popup generik), bukan "menu" - isinya dua tautan unduh,
+              // bukan widget menu dengan navigasi panah.
+              aria-haspopup="true"
               className="flex items-center gap-1 rounded px-3 py-2 text-sm font-medium text-muted transition-colors hover:text-text"
             >
               {t(ui.nav.resume, lang)}
@@ -108,14 +129,15 @@ export function Navbar({ lang }: { lang: Locale }) {
               />
             </button>
             {resumeOpen && (
-              <div
-                role="menu"
-                className="absolute right-0 mt-1 w-56 overflow-hidden rounded border border-border bg-surface py-1"
-              >
+              // Tanpa role="menu"/"menuitem": role itu menjanjikan pola
+              // keyboard tertentu (panah atas/bawah, Home/End) ke assistive
+              // tech, dan kita tidak menyediakannya. Menjanjikan lalu tidak
+              // memenuhi lebih membingungkan daripada tidak memakainya - ini
+              // memang cuma dua tautan unduh biasa.
+              <div className="absolute right-0 mt-1 w-56 overflow-hidden rounded border border-border bg-surface py-1">
                 {resumeLinks.map((r) => (
                   <a
                     key={r.href}
-                    role="menuitem"
                     href={r.href}
                     download
                     className="block px-4 py-2 text-sm text-text transition-colors hover:bg-bg hover:text-accent"
@@ -145,6 +167,7 @@ export function Navbar({ lang }: { lang: Locale }) {
           <LanguageSwitcher lang={lang} />
           <button
             type="button"
+            ref={mobileToggleRef}
             onClick={() => setMobileOpen((v) => !v)}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"

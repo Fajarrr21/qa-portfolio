@@ -1,4 +1,5 @@
 import type { BenchmarkChart as BenchmarkChartData } from '@/lib/types';
+import { ui } from '@/content/ui';
 import { type Locale, t } from '@/lib/i18n';
 
 // Grouped horizontal bars (HTML/CSS, bukan gambar). Dua seri: Go & Node.
@@ -63,7 +64,11 @@ export function BenchmarkChart({
                       <div
                         key={bar.name}
                         className="flex items-center gap-2"
-                        aria-label={`${d.endpoint} ${bar.name}: ${fmt(bar.value, lang)} ${unit}`}
+                        // Tanpa aria-label: elemen generik tanpa role sering
+                        // diabaikan screen reader. Angkanya sudah ditulis
+                        // sebagai teks di sebelah kanan, dan tabel di bawah
+                        // memuat seluruh datanya.
+                        aria-hidden
                       >
                         <div className="h-4 flex-1 overflow-hidden rounded-sm bg-bg">
                           <div
@@ -86,6 +91,52 @@ export function BenchmarkChart({
           </div>
         ))}
       </div>
+
+      {/* Tabel dengan data yang sama. Dua fungsi sekaligus: bisa dibaca screen
+          reader (bar CSS tidak bisa), dan angkanya bisa disalin pembaca yang
+          mau memakainya. Ditutup di <details> supaya tidak mengganggu. */}
+      <details className="mt-5 border-t border-border pt-4">
+        <summary className="cursor-pointer text-xs font-medium text-accent">
+          {t(ui.caseStudy.showAsTable, lang)}
+        </summary>
+        <div className="mt-3 overflow-x-auto">
+          <table className="w-full text-left text-xs">
+            <caption className="sr-only">
+              {t(chart.title, lang)} ({unit})
+            </caption>
+            <thead>
+              <tr className="text-muted">
+                <th scope="col" className="py-1.5 pr-4 font-medium">
+                  {t(ui.caseStudy.loadLevel, lang)}
+                </th>
+                <th scope="col" className="py-1.5 pr-4 font-medium">
+                  Endpoint
+                </th>
+                <th scope="col" className="py-1.5 pr-4 text-right font-medium">
+                  Go
+                </th>
+                <th scope="col" className="py-1.5 text-right font-medium">
+                  Node.js
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {chart.levels.map((level) =>
+                level.data.map((d) => (
+                  <tr key={`${t(level.label, lang)}-${d.endpoint}`} className="border-t border-border">
+                    <td className="py-1.5 pr-4 text-muted">{t(level.label, lang)}</td>
+                    <th scope="row" className="py-1.5 pr-4 font-mono font-normal">
+                      {d.endpoint}
+                    </th>
+                    <td className="py-1.5 pr-4 text-right tabular-nums">{fmt(d.go, lang)}</td>
+                    <td className="py-1.5 text-right tabular-nums">{fmt(d.node, lang)}</td>
+                  </tr>
+                )),
+              )}
+            </tbody>
+          </table>
+        </div>
+      </details>
 
       {chart.caption && (
         <p className="mt-4 text-xs text-muted">{t(chart.caption, lang)}</p>
