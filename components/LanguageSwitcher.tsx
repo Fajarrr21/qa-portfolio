@@ -41,7 +41,7 @@ export function LanguageSwitcher({
           <span
             key={locale}
             aria-current="true"
-            className="rounded bg-accent px-2 py-1 text-xs font-semibold text-white"
+            className="rounded bg-accent px-2 py-1 text-xs font-semibold text-accent-fg"
           >
             {label.short}
           </span>

@@ -37,7 +37,7 @@ export function WorkFilter({ projects, lang }: { projects: Project[]; lang: Loca
               aria-pressed={isActive}
               className={`rounded border px-3 py-1.5 text-sm font-medium transition-colors duration-150 ${
                 isActive
-                  ? 'border-accent bg-accent text-white'
+                  ? 'border-accent bg-accent text-accent-fg'
                   : 'border-border bg-surface text-muted hover:border-accent hover:text-accent'
               }`}
             >

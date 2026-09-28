@@ -17,6 +17,9 @@ const config: Config = {
         border: 'var(--border)',
         accent: 'var(--accent)',
         'accent-hover': 'var(--accent-hover)',
+        // Teks di atas bidang --accent. Putih di light mode, gelap di dark mode
+        // (karena accent-nya dibalik jadi biru terang) - jangan pakai text-white.
+        'accent-fg': 'var(--accent-fg)',
         // Status severity (khusus halaman bug).
         'sev-critical': 'var(--sev-critical)',
         'sev-high': 'var(--sev-high)',

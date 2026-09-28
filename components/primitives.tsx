@@ -100,7 +100,7 @@ type ButtonVariant = 'primary' | 'secondary';
 const buttonBase =
   'inline-flex items-center justify-center gap-2 rounded border px-4 py-2.5 text-sm font-medium transition-colors duration-150';
 const buttonVariants: Record<ButtonVariant, string> = {
-  primary: 'border-accent bg-accent text-white hover:bg-accent-hover',
+  primary: 'border-accent bg-accent text-accent-fg hover:bg-accent-hover',
   secondary: 'border-border bg-surface text-text hover:border-accent hover:text-accent',
 };
 

@@ -37,9 +37,12 @@ export const ui = {
     featuredTitle: { en: 'Selected case studies', id: 'Studi kasus pilihan' },
     viewAllWork: { en: 'View all work', id: 'Lihat semua proyek' },
     viewExperience: { en: 'View experience', id: 'Lihat pengalaman' },
+    // Versi EN sengaja provokatif ("needs breaking"). Versi ID dibuat menjaga
+    // energi yang sama tapi tanpa bahasa gaul - "sampai jebol" terasa terlalu
+    // santai untuk halaman yang dibaca recruiter.
     ctaTitle: {
       en: 'Have software that needs breaking?',
-      id: 'Punya software yang perlu diuji sampai jebol?',
+      id: 'Punya software yang perlu diuji sampai batasnya?',
     },
     ctaSubtitle: { en: "Let's talk.", id: 'Mari ngobrol.' },
   },
@@ -96,6 +99,17 @@ export const ui = {
     description: {
       en: 'Open to QA Engineer opportunities, testing projects, and collaborations.',
       id: 'Terbuka untuk peluang sebagai QA Engineer, proyek pengujian, dan kolaborasi.',
+    },
+    // Status ketersediaan - ditampilkan di atas kartu kanal kontak.
+    statusTitle: { en: 'Open to opportunities', id: 'Terbuka untuk peluang' },
+    statusDetail: {
+      en: 'QA Engineer roles - remote, hybrid, or onsite.',
+      id: 'Peran QA Engineer - remote, hybrid, maupun onsite.',
+    },
+    basedIn: { en: 'Based in', id: 'Berbasis di' },
+    respondNote: {
+      en: 'Email is the fastest way to reach me.',
+      id: 'Email adalah cara tercepat menghubungi saya.',
     },
   },
 
