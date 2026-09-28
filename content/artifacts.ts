@@ -423,10 +423,10 @@ const testCase: Artifact = {
           },
         },
         {
-          label: { en: 'Comment', id: 'Komentar' },
+          label: { en: 'Actual result', id: 'Actual Result' },
           value: {
-            en: 'There is no hide/unhide control on this page',
-            id: 'Tidak terdapat fitur hide/unhide password',
+            en: 'There is no hide/unhide control on the login page',
+            id: 'Tidak terdapat fitur hide/unhide password pada halaman login',
           },
         },
         { label: 'Priority', value: 'Low' },
