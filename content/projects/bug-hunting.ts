@@ -11,8 +11,8 @@ export const bugHunting: Project = {
   slug: 'bug-hunting',
   title: { en: 'Bug Hunting Log', id: 'Catatan Bug Hunting' },
   subtitle: {
-    en: 'Six defects in a banking demo, written up so a developer can act on them',
-    id: 'Enam cacat di aplikasi demo perbankan, ditulis supaya developer bisa langsung menindaklanjuti',
+    en: 'Eleven defects written up so a developer can act on them without asking a follow-up question',
+    id: 'Sebelas cacat yang ditulis supaya developer bisa menindaklanjuti tanpa perlu bertanya lagi',
   },
   label: 'Personal project',
   tags: ['Manual'],
@@ -21,8 +21,8 @@ export const bugHunting: Project = {
   // techStack tidak diterjemahkan (nama tool apa adanya).
   techStack: ['Cypress', 'Chrome DevTools'],
   metrics: [
-    { value: '6', label: { en: 'Defects logged', id: 'Cacat tercatat' } },
-    { value: '2', label: { en: 'Rated Critical', id: 'Berstatus Critical' } },
+    { value: '11', label: { en: 'Defects logged', id: 'Cacat tercatat' } },
+    { value: '3', label: { en: 'Rated Critical', id: 'Berstatus Critical' } },
     { value: '4', label: { en: 'Reflected as failing tests', id: 'Tercermin sebagai test gagal' } },
   ],
   links: [
@@ -30,12 +30,16 @@ export const bugHunting: Project = {
   ],
   overview: [
     {
-      en: 'These defects were found in ParaBank, Parasoft\'s public demo banking application, while building the automation suite for it. They are logged here separately from that case study because writing a defect up is a different skill from automating one: the suite proves the behaviour is wrong, the report is what makes it fixable.',
-      id: 'Cacat-cacat ini ditemukan di ParaBank, aplikasi demo perbankan publik milik Parasoft, saat membangun suite automation untuknya. Dicatat terpisah dari case study itu karena menuliskan sebuah cacat adalah keterampilan yang berbeda dari mengotomasinya: suite membuktikan perilakunya salah, laporannyalah yang membuatnya bisa diperbaiki.',
+      en: 'Defects from two pieces of work. Six come from ParaBank, Parasoft\'s public demo banking application, found while building the automation suite for it. Five come from a design-compliance review, comparing a delivered chat interface against its design file. They are logged here rather than inside those case studies because writing a defect up is a different skill from finding one: the suite proves the behaviour is wrong, the report is what makes it fixable.',
+      id: 'Cacat dari dua pekerjaan. Enam berasal dari ParaBank, aplikasi demo perbankan publik milik Parasoft, ditemukan saat membangun suite automation untuknya. Lima berasal dari review kesesuaian desain, membandingkan antarmuka chat yang dikirim dengan berkas desainnya. Dicatat di sini alih-alih di dalam case study masing-masing karena menuliskan sebuah cacat adalah keterampilan yang berbeda dari menemukannya: suite membuktikan perilakunya salah, laporannyalah yang membuatnya bisa diperbaiki.',
     },
     {
-      en: 'Four of the six are reflected as tests that are deliberately left failing. Two were found by reading the application\'s own markup rather than by any test - which is the part automation cannot do for you.',
-      id: 'Empat dari enam tercermin sebagai test yang sengaja dibiarkan gagal. Dua sisanya ditemukan dengan membaca markup aplikasinya sendiri, bukan oleh test mana pun - dan itulah bagian yang tidak bisa digantikan automation.',
+      en: 'Four of the eleven are reflected as tests deliberately left failing. Two were found by reading the application\'s own markup rather than by any test - the part automation cannot do for you.',
+      id: 'Empat dari sebelas tercermin sebagai test yang sengaja dibiarkan gagal. Dua ditemukan dengan membaca markup aplikasinya sendiri, bukan oleh test mana pun - bagian yang tidak bisa digantikan automation.',
+    },
+    {
+      en: 'This is a selection, not the full log. Findings that were purely about spacing are left out, and defects found in the products I test at work are not published at all - those appear only as a total in the CARDS case study. A bug log is judged by how deeply one entry is understood, not by how long the list is.',
+      id: 'Ini pilihan, bukan catatan lengkapnya. Temuan yang murni soal jarak antar elemen tidak dimasukkan, dan cacat yang ditemukan di produk yang saya uji di tempat kerja tidak ditayangkan sama sekali - yang itu hanya muncul sebagai jumlah di case study CARDS. Catatan bug dinilai dari sedalam apa satu entri dipahami, bukan dari sepanjang apa daftarnya.',
     },
   ],
   objective: {
