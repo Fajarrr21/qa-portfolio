@@ -6,6 +6,10 @@ import type { Project } from '@/lib/types';
 //  - Tidak ada URL/staging/endpoint internal, kredensial, API key, atau data pengguna.
 //  - Nama modul hanya yang disebut di brief §10 / resume.
 //  - JANGAN mengklaim automation berjalan di CI - suite dijalankan lokal.
+//  - JANGAN mengklaim pass rate, durasi eksekusi, atau jumlah test yang lulus:
+//    suite-nya belum pernah dijalankan penuh satu putaran (per 28 Sep 2026).
+//    Kalau nanti sudah, angkanya boleh masuk - tapi angka hasil eksekusi nyata,
+//    bukan perkiraan.
 //
 // REVIEW(fajar): string `id:` adalah terjemahan dari versi Inggris yang sudah
 // lolos aturan kerahasiaan di atas. Terjemahan tidak menambah detail apa pun.
@@ -127,8 +131,8 @@ export const cardsSchoolV3: Project = {
       id: 'Setiap test membawa test case ID-nya sendiri, sehingga suite tetap tertelusur ke Zephyr.',
     },
     {
-      en: 'Mochawesome produces the run report. The suite is executed locally, not in CI.',
-      id: 'Mochawesome menghasilkan laporan eksekusi. Suite dijalankan secara lokal, bukan di CI.',
+      en: 'The suite is configured with Mochawesome reporting and runs locally during development, not in CI. It has not yet been executed as one full end-to-end run, so there is no aggregate pass rate to quote.',
+      id: 'Suite dikonfigurasi dengan pelaporan Mochawesome dan dijalankan lokal saat pengembangan, bukan di CI. Belum pernah dieksekusi penuh dalam satu putaran, jadi belum ada pass rate gabungan yang bisa disebutkan.',
     },
   ],
   architecture: [
@@ -146,7 +150,7 @@ export const cardsSchoolV3: Project = {
     },
     {
       label: { en: 'Mochawesome report', id: 'Laporan Mochawesome' },
-      note: { en: 'run locally', id: 'dijalankan lokal' },
+      note: { en: 'configured; local runs', id: 'dikonfigurasi; dijalankan lokal' },
     },
   ],
   snippets: [

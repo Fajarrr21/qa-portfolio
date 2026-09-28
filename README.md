@@ -117,4 +117,9 @@ perlu kamu lengkapi:
 Case study `cards-school-v3` adalah *professional work* (PT. Cazh Teknologi Inovasi). Sesuai izin & aturan:
 tidak ada kode dari repo kantor, tidak ada URL/kredensial/endpoint internal, tidak ada data pengguna,
 dan tidak ada screenshot aplikasi. Semua snippet di sana **ilustratif** (ditulis ulang generik) dan
-diberi label `Illustrative example - not production code`. Automation suite dijalankan **lokal** (bukan CI).
+diberi label `Illustrative example - not production code`.
+
+Automation suite dijalankan **lokal** (bukan CI), dan **belum pernah dieksekusi penuh satu putaran** -
+script-nya masih perlu diperbaiki. Karena itu case study ini tidak menyebut pass rate, durasi
+eksekusi, atau jumlah test yang lulus. Jangan menambahkannya sebelum suite-nya benar-benar
+dijalankan dan angkanya diambil dari hasil eksekusi nyata.
