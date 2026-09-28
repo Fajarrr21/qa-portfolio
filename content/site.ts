@@ -254,15 +254,21 @@ export const site = {
   } as Text,
 
   // About - How I test (alur §7.4).
+  // Alur ini dari Fajar langsung (29 Sep 2026), bukan susunan dari resume.
+  // Sejalan dengan paragraf About di bawah - kalau salah satu diubah, samakan
+  // yang lain supaya halaman ini tidak memuat dua versi alur kerja.
   howITest: [
-    { en: 'Understand the feature', id: 'Memahami fitur' },
+    { en: 'Read the requirement document', id: 'Memahami requirement document' },
     { en: 'Identify risk', id: 'Mengidentifikasi risiko' },
     {
-      en: 'Design scenarios (positive, negative, boundary, business logic)',
-      id: 'Merancang skenario (positif, negatif, boundary, business logic)',
+      en: 'Design scenarios and test cases (positive, negative, logic, UI/UX design)',
+      id: 'Merancang skenario & test case (positif, negatif, logic, desain UI/UX)',
     },
-    'Exploratory testing',
-    'Regression',
+    {
+      en: 'Regression, exploratory, and the rest of the testing',
+      id: 'Regression, exploratory, dan pengujian lainnya',
+    },
+    { en: 'Reporting', id: 'Reporting' },
   ] as Text[],
 
   // About - Tools (§7.5). Nama tool tidak diterjemahkan.

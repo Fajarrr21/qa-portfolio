@@ -66,8 +66,8 @@ export const ui = {
     howEyebrow: { en: 'How I test', id: 'Cara saya menguji' },
     howTitle: { en: 'My approach', id: 'Pendekatan saya' },
     howDescription: {
-      en: 'A repeatable path from understanding a feature to protecting it against regressions.',
-      id: 'Alur yang berulang dan konsisten, dari memahami sebuah fitur sampai menjaganya dari regresi.',
+      en: 'A repeatable path from reading the requirements to reporting the result.',
+      id: 'Alur yang berulang dan konsisten, dari membaca requirement sampai melaporkan hasilnya.',
     },
     toolsEyebrow: { en: 'Tools', id: 'Tools' },
     toolsTitle: { en: 'What I work with', id: 'Yang saya pakai' },
