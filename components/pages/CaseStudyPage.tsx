@@ -73,11 +73,13 @@ export function CaseStudyPage({ slug, lang }: { slug: string; lang: Locale }) {
               {project.metrics.map((m) => {
                 const label = t(m.label, lang);
                 return (
-                  <div key={`${label}-${m.value}`}>
+                  // flex-col-reverse: urutan DOM <dt> lalu <dd> (wajib di <dl>),
+                  // tampilannya tetap angka di atas label.
+                  <div key={`${label}-${m.value}`} className="flex flex-col-reverse">
+                    <dt className="text-sm text-muted">{label}</dt>
                     <dd className="text-2xl font-semibold tracking-tight text-accent">
                       {m.value}
                     </dd>
-                    <dt className="text-sm text-muted">{label}</dt>
                   </div>
                 );
               })}

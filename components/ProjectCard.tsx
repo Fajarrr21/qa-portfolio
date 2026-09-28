@@ -19,7 +19,7 @@ export function ProjectCard({
   const isProfessional = project.label === 'Professional work';
 
   return (
-    <article className="group flex h-full flex-col rounded border border-border bg-surface p-6 transition-colors duration-150 hover:border-accent">
+    <article className="group relative flex h-full flex-col rounded border border-border bg-surface p-6 transition-colors duration-150 hover:border-accent">
       <div className="mb-3 flex items-center justify-between gap-3">
         <span className="inline-flex items-center gap-1.5 text-xs font-medium text-muted">
           {isProfessional && <Lock size={12} aria-hidden />}
