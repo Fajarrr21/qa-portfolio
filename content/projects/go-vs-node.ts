@@ -45,6 +45,10 @@ export const goVsNode: Project = {
       en: 'Both stacks are driven at two concurrency levels - 20 and 100 virtual users - against four endpoints chosen to isolate CPU, database, and cache behaviour. Across every endpoint and both load levels, Go leads on throughput by 1.19× to 1.65×, and the ordering never reverses.',
       id: 'Kedua stack dibebani pada dua tingkat konkurensi - 20 dan 100 virtual user - terhadap empat endpoint yang dipilih untuk mengisolasi perilaku CPU, database, dan cache. Di seluruh endpoint dan kedua tingkat beban, Go unggul pada throughput sebesar 1,19× sampai 1,65×, dan urutannya tidak pernah berbalik.',
     },
+    {
+      en: 'I ran this in July 2026, the same month I took the k6 load-testing class at BuildWithAngga - the benchmark is where that material got applied to a real question rather than a course exercise.',
+      id: 'Benchmark ini saya jalankan pada Juli 2026, bulan yang sama dengan kelas load testing k6 di BuildWithAngga - di sinilah materinya saya pakai untuk menjawab pertanyaan nyata, bukan sekadar latihan kelas.',
+    },
   ],
   objective: {
     en: 'Measure throughput and latency of equivalent Go and Node.js services under identical conditions, and observe how the gap changes when load rises from 20 to 100 virtual users.',

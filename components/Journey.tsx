@@ -1,3 +1,4 @@
+import { ArrowUpRight } from 'lucide-react';
 import type { JourneyItem } from '@/content/site';
 import { ui } from '@/content/ui';
 import { type Locale, type Text, t } from '@/lib/i18n';
@@ -25,7 +26,26 @@ export function Journey({
               className="absolute -left-[1.6875rem] top-1.5 h-3 w-3 rounded-full border-2 border-accent bg-bg"
             />
             <p className="text-sm font-medium text-accent">{t(item.date, lang)}</p>
-            <p className="mt-0.5 text-text">{t(item.title, lang)}</p>
+            {item.href ? (
+              <a
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group mt-0.5 inline-flex items-start gap-1 text-text transition-colors hover:text-accent"
+              >
+                {t(item.title, lang)}
+                <ArrowUpRight
+                  size={15}
+                  aria-hidden
+                  className="mt-1 shrink-0 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </a>
+            ) : (
+              <p className="mt-0.5 text-text">{t(item.title, lang)}</p>
+            )}
+            {item.note && (
+              <p className="mt-0.5 font-mono text-xs text-muted">{t(item.note, lang)}</p>
+            )}
           </li>
         ))}
       </ol>

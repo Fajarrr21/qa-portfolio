@@ -29,6 +29,10 @@ export interface ExperienceItem {
 export interface JourneyItem {
   date: Text;
   title: Text;
+  /** Tautan verifikasi sertifikat. Harus permanen - jangan signed URL yang kedaluwarsa. */
+  href?: string;
+  /** Keterangan kecil di bawah judul, mis. nomor atau ID sertifikat. */
+  note?: Text;
 }
 
 export interface StatItem {
@@ -206,13 +210,19 @@ export const site = {
         id: 'Mulai mengoordinasi intern QA - batch pertama, 20 intern',
       },
     },
-    { date: '2026', title: 'Quality Assurance Bootcamp, Sanbercode' },
     {
       date: 'Apr 2026',
       title: {
         en: 'Started building Cypress automation for CARDS School V3 and the Cazh POS web dashboard',
         id: 'Mulai membangun automation Cypress untuk CARDS School V3 dan dashboard web Cazh POS',
       },
+    },
+    // Berjalan bersamaan dengan automation di atas, bukan sesudahnya.
+    {
+      date: { en: 'Apr - May 2026', id: 'Apr - Mei 2026' },
+      title: 'Quality Assurance Bootcamp, Sanbercode',
+      href: 'https://sanbercode.com/certificate/in/e049f3ef-b52e-4d2a-bc96-37609598df10',
+      note: { en: 'Certificate no. 49357/871/SNBR/BOOTCAMP/V/2026', id: 'Sertifikat no. 49357/871/SNBR/BOOTCAMP/V/2026' },
     },
     {
       date: 'Jul 2026',
@@ -222,8 +232,13 @@ export const site = {
       },
     },
     {
-      date: '2026',
+      date: 'Jul 2026',
       title: 'K6 for Engineers: Load Testing Real-World Apps at Scale, BuildWithAngga',
+      // Tanpa href: link yang tersedia dari BuildWithAngga adalah signed URL
+      // ber-expires (habis dalam hitungan hari) dan terikat akun, jadi tidak
+      // layak dipasang. ID di bawah ini yang dipakai untuk verifikasi.
+      // TODO(fajar): ganti ke href kalau ketemu permalink publik di dashboard BWA.
+      note: { en: 'Credential ID: vd5IuchyYl', id: 'ID kredensial: vd5IuchyYl' },
     },
   ] as JourneyItem[],
 
