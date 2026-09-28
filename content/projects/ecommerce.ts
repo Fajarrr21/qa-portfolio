@@ -17,7 +17,7 @@ export const ecommerce: Project = {
   label: 'Personal project',
   tags: ['Automation', 'API'],
   featured: false,
-  order: 4,
+  order: 5,
   techStack: [
     'Cypress',
     'JavaScript',

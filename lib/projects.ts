@@ -4,9 +4,10 @@ import { cardsSchoolV3 } from '@/content/projects/cards-school-v3';
 import { goVsNode } from '@/content/projects/go-vs-node';
 import { ecommerce } from '@/content/projects/ecommerce';
 import { bugHunting } from '@/content/projects/bug-hunting';
+import { parabank } from '@/content/projects/parabank';
 
 // Registrasi project. Menambah project baru = tambah satu file lalu daftarkan di sini.
-const ALL: Project[] = [orangehrm, cardsSchoolV3, goVsNode, ecommerce, bugHunting];
+const ALL: Project[] = [parabank, orangehrm, cardsSchoolV3, goVsNode, ecommerce, bugHunting];
 
 /** Di dev semua project tampil; di production (build) draft disembunyikan. */
 export const isDev = process.env.NODE_ENV !== 'production';

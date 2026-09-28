@@ -16,8 +16,8 @@ export const orangehrm: Project = {
   },
   label: 'Personal project',
   tags: ['Automation', 'API'],
-  featured: true,
-  order: 1,
+  featured: false,
+  order: 4,
   techStack: [
     'Cypress',
     'JavaScript',

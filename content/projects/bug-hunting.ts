@@ -15,7 +15,7 @@ export const bugHunting: Project = {
   tags: ['Manual'],
   featured: false,
   draft: true,
-  order: 5,
+  order: 6,
   techStack: [],
   metrics: [],
   links: [],
