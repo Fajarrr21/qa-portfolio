@@ -280,12 +280,14 @@ export const site = {
     'Google Sheets',
   ],
 
-  // About - About me (2 paragraf, draft dari fakta).
-  // REVIEW(fajar): paragraf berikut saya susun dari fakta di resume - mohon dicek.
+  // About - About me (2 paragraf).
+  // Sudah dibaca ulang & disetujui Fajar (29 Sep 2026). Alur kerja di kalimat
+  // kedua adalah alur yang benar-benar dia jalankan, termasuk pemeriksaan
+  // kesesuaian implementasi dengan desain Figma - jangan dipangkas.
   about: [
     {
-      en: 'I am a Quality Assurance Engineer with over a year of experience testing school-management and digital-payment products across web, mobile, and POS. At PT. Cazh Teknologi Inovasi I am the sole QA engineer on the development team, which means I own test coverage and bug-reporting standards end to end - from designing test cases and running regression, exploratory, and acceptance testing to validating the bug reports that reach the developers.',
-      id: 'Saya seorang Quality Assurance Engineer dengan pengalaman lebih dari satu tahun menguji produk manajemen sekolah dan pembayaran digital di web, mobile, dan POS. Di PT. Cazh Teknologi Inovasi saya adalah satu-satunya QA engineer di tim development, yang berarti saya memegang standar cakupan pengujian dan pelaporan bug dari hulu ke hilir - mulai dari merancang test case, menjalankan regression, exploratory, dan acceptance testing, sampai memvalidasi laporan bug yang sampai ke developer.',
+      en: 'I am a Quality Assurance Engineer with over a year of experience testing school-management and digital-payment products across web, mobile, and POS. At PT. Cazh Teknologi Inovasi I am the sole QA engineer on the development team, which means test coverage and bug-reporting standards are mine to set: reading the requirements, designing test cases, running regression and exploratory testing, checking the implementation against the design in Figma, then acceptance testing and validating the bug reports that reach the developers.',
+      id: 'Saya seorang Quality Assurance Engineer dengan pengalaman lebih dari satu tahun menguji produk manajemen sekolah dan pembayaran digital di web, mobile, dan POS. Di PT. Cazh Teknologi Inovasi saya adalah satu-satunya QA engineer di tim development, yang berarti standar cakupan pengujian dan pelaporan bug ada di tangan saya: membaca requirement, merancang test case, menjalankan regression dan exploratory testing, memeriksa kesesuaian implementasi dengan desain di Figma, lalu acceptance testing dan memvalidasi laporan bug yang sampai ke developer.',
     },
     {
       en: 'My work spans manual testing, API testing, and end-to-end automation in Cypress built on the Page Object Model, with every automated test traceable back to its test case ID. Alongside the day-to-day testing I coordinate a team of QA interns, and outside of work I run controlled experiments - like a Go vs Node.js load-testing benchmark - to keep my performance-testing skills sharp.',
