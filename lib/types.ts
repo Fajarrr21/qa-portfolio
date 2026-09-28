@@ -45,7 +45,13 @@ export interface FlowStep {
 }
 
 export interface ResultTile {
-  value: string;
+  /**
+   * Biasanya sama di kedua bahasa ('847+', '100%'), jadi cukup string biasa.
+   * Pakai { en, id } untuk angka ribuan: pemisahnya terbalik antar bahasa -
+   * 6,452 dalam bahasa Inggris adalah 6.452 dalam bahasa Indonesia, dan
+   * menukarnya mengubah arti angkanya, bukan sekadar gayanya.
+   */
+  value: Text;
   label: Text;
   note?: Text;
 }

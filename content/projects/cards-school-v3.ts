@@ -138,6 +138,29 @@ export const cardsSchoolV3: Project = {
       en: 'The suite is configured with Mochawesome reporting and runs locally during development, not in CI. It has not yet been executed as one full end-to-end run, so there is no aggregate pass rate to quote.',
       id: 'Suite dikonfigurasi dengan pelaporan Mochawesome dan dijalankan lokal saat pengembangan, bukan di CI. Belum pernah dieksekusi penuh dalam satu putaran, jadi belum ada pass rate gabungan yang bisa disebutkan.',
     },
+    // --- Koordinasi UAT ---
+    // Angka dari dokumen UAT internal. SENGAJA tanpa nama modul, nama orang,
+    // dan URL environment - lihat aturan kerahasiaan di atas.
+    {
+      en: 'For the major release UAT I wrote the test case document myself - 6,452 cases across twenty modules - and then ran it as a coordinated pass with thirty testers rather than executing it alone.',
+      id: 'Untuk UAT rilis mayor, dokumen test case-nya saya susun sendiri - 6.452 kasus uji di dua puluh modul - lalu dijalankan sebagai pengujian terkoordinasi bersama tiga puluh tester, bukan dieksekusi sendirian.',
+    },
+    {
+      en: 'Tracking it needed more than pass and fail. Each case carries one of eight states, and the two that matter most are the ones a simpler scheme would hide: Blocked, for a case that cannot be judged yet, and Merged, for a fix that exists but has not been deployed. Without them, both look like failures and the same case gets re-tested for no reason.',
+      id: 'Melacaknya butuh lebih dari sekadar lulus dan gagal. Tiap kasus membawa satu dari delapan status, dan dua yang paling penting justru yang akan disembunyikan skema sederhana: Blocked, untuk kasus yang memang belum bisa dinilai, dan Merged, untuk perbaikan yang sudah ada tapi belum ter-deploy. Tanpa keduanya, dua-duanya terbaca sebagai kegagalan dan kasus yang sama diuji ulang tanpa alasan.',
+    },
+    {
+      en: 'Coverage rolls up automatically from the twenty module sheets, so completion is read rather than compiled by hand. Alongside it sit an assignment sheet, a question log giving testers one place to ask instead of thirty scattered chats, and separate lists for blocked and invalid cases.',
+      id: 'Cakupannya terangkum otomatis dari dua puluh sheet modul, sehingga kemajuannya dibaca, bukan direkap manual. Di sampingnya ada sheet pembagian tugas, log pertanyaan supaya tester punya satu tempat bertanya alih-alih tiga puluh percakapan terpencar, serta daftar terpisah untuk kasus blocked dan invalid.',
+    },
+    {
+      en: 'The pass closed at zero untested. 282 cases - 4.4% - were marked invalid: my own test cases that turned out not to apply or to have been written against behaviour that had since changed. Recording them as invalid rather than quietly deleting them keeps the coverage figure honest.',
+      id: 'Pengujiannya ditutup dengan nol kasus yang belum diuji. 282 kasus - 4,4% - ditandai invalid: test case buatan saya sendiri yang ternyata tidak berlaku atau ditulis untuk perilaku yang sudah berubah. Mencatatnya sebagai invalid alih-alih menghapusnya diam-diam membuat angka cakupannya tetap jujur.',
+    },
+    {
+      en: 'On the POS product\'s UAT the split with a senior QA was by device class: I took the Android phone pass, they took the Android tablet.',
+      id: 'Pada UAT produk POS, pembagian dengan senior QA dilakukan per kelas perangkat: saya mengambil pengujian di handphone Android, beliau di tablet Android.',
+    },
   ],
   architecture: [
     {
@@ -258,6 +281,32 @@ cy.fixture('subjects').then((rows) => {
     },
   ],
   results: [
+    // Angka UAT & defect diambil dari dokumen internal. Yang boleh tampil hanya
+    // agregatnya - tanpa rincian per modul, per produk, atau per orang.
+    {
+      value: { en: '6,452', id: '6.452' },
+      label: { en: 'UAT test cases written', id: 'Test case UAT yang disusun' },
+      note: {
+        en: 'across 20 modules, executed by 30 testers',
+        id: 'di 20 modul, dieksekusi 30 tester',
+      },
+    },
+    {
+      value: '0',
+      label: { en: 'Cases left untested', id: 'Kasus yang belum diuji' },
+      note: {
+        en: '282 marked invalid rather than quietly dropped',
+        id: '282 ditandai invalid, bukan dihapus diam-diam',
+      },
+    },
+    {
+      value: '141',
+      label: { en: 'Defects logged and tracked', id: 'Defect dicatat & dilacak' },
+      note: {
+        en: '77 closed; 3 Critical, 21 Major',
+        id: '77 selesai; 3 Critical, 21 Major',
+      },
+    },
     {
       value: '~10',
       label: { en: 'Bug reports validated weekly', id: 'Laporan bug divalidasi tiap minggu' },
