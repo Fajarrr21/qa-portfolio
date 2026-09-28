@@ -119,7 +119,13 @@ tidak ada kode dari repo kantor, tidak ada URL/kredensial/endpoint internal, tid
 dan tidak ada screenshot aplikasi. Semua snippet di sana **ilustratif** (ditulis ulang generik) dan
 diberi label `Illustrative example - not production code`.
 
-Automation suite dijalankan **lokal** (bukan CI), dan **belum pernah dieksekusi penuh satu putaran** -
-script-nya masih perlu diperbaiki. Karena itu case study ini tidak menyebut pass rate, durasi
-eksekusi, atau jumlah test yang lulus. Jangan menambahkannya sebelum suite-nya benar-benar
-dijalankan dan angkanya diambil dari hasil eksekusi nyata.
+Automation suite dijalankan **lokal** (bukan CI), dan **belum pernah dieksekusi penuh satu
+putaran** - script-nya sudah direview & diperbaiki, tapi kebenarannya belum diverifikasi lewat
+eksekusi. Karena itu case study ini tidak menyebut pass rate, durasi eksekusi, atau jumlah test
+yang lulus. Jangan menambahkannya sebelum suite-nya benar-benar dijalankan dan angkanya diambil
+dari hasil eksekusi nyata.
+
+Pembagian kerja pada suite CARDS School V3: kerangka (Page Object, konvensi penamaan test case ID,
+fixture, penanganan sesi) dan seluruh Page Object dibuat sendiri; spec ditulis tim intern QA lalu
+direview & diperbaiki. Suite Cazh POS (CPA V2, 86 test case) sepenuhnya dikerjakan sendiri.
+Jangan menulis seolah 847 test case itu diketik sendirian.

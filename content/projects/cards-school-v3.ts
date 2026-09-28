@@ -58,6 +58,10 @@ export const cardsSchoolV3: Project = {
       id: 'Peran saya mencakup perancangan test, manual testing, regression, exploratory testing, dan UAT, ditambah validasi bug, automation end-to-end, dan mengoordinasi intern QA. Automation difokuskan pada rilis mayor terbaru dan tetap tertelusur ke dokumentasi test case.',
     },
     {
+      en: 'The automation work splits two ways. I designed the framework and wrote the page objects, then led the QA intern team that produced the ~847 test cases across 64 spec files, reviewing and correcting the specs they wrote. The 86 test cases on the Cazh POS web dashboard are entirely my own. Getting a large intern team to produce a suite that stays consistent is a different problem from writing every test myself, and the conventions below are what make it possible.',
+      id: 'Pekerjaan automation-nya terbagi dua. Saya merancang kerangkanya dan menulis seluruh Page Object, lalu memimpin tim intern QA yang menghasilkan ~847 test case di 64 file spec, sekaligus mereview dan memperbaiki spec yang mereka tulis. Sementara 86 test case pada dashboard web Cazh POS sepenuhnya pekerjaan saya sendiri. Membuat tim intern yang besar menghasilkan suite yang tetap konsisten itu persoalan yang berbeda dari menulis semua test sendirian, dan konvensi-konvensi di bawah inilah yang membuatnya mungkin.',
+    },
+    {
       en: 'To respect confidentiality, this case study contains no internal URLs, credentials, user data, or code from the company repository. The code below is illustrative - rewritten generically to show the patterns I use, not production source.',
       id: 'Demi menjaga kerahasiaan, studi kasus ini tidak memuat URL internal, kredensial, data pengguna, maupun kode dari repo perusahaan. Kode di bawah bersifat ilustratif - ditulis ulang secara generik untuk menunjukkan pola yang saya pakai, bukan sumber production.',
     },

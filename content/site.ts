@@ -165,9 +165,15 @@ export const site = {
         en: 'Designed test scenarios and test cases for new and changed features, ran regression, UI, exploratory, and responsive testing across web, mobile, and POS platforms, and prepared and executed User Acceptance Testing scenarios before release.',
         id: 'Merancang skenario dan test case untuk fitur baru maupun fitur yang berubah, menjalankan regression, UI, exploratory, dan responsive testing di platform web, mobile, dan POS, serta menyiapkan dan menjalankan skenario User Acceptance Testing sebelum rilis.',
       },
+      // Pembagian kerjanya ditulis eksplisit: 847 test case itu keluaran tim,
+      // bukan ketikan sendiri. Lihat catatan di README.
       {
-        en: 'Built end-to-end automation in Cypress using the Page Object Model for the latest major releases: ~847 test cases across 64 spec files on CARDS School V3, and 86 test cases on the Cazh POS web dashboard (CPA V2).',
-        id: 'Membangun automation end-to-end dengan Cypress memakai Page Object Model untuk rilis mayor terbaru: ~847 test case di 64 file spec pada CARDS School V3, dan 86 test case pada dashboard web Cazh POS (CPA V2).',
+        en: 'Designed the end-to-end Cypress automation for the latest major releases - the Page Object Model structure, test case ID naming, data-driven fixtures, and session handling - and wrote the page objects. Led the QA intern team that produced ~847 test cases across 64 spec files for CARDS School V3, reviewing and correcting the specs they wrote.',
+        id: 'Merancang automation end-to-end Cypress untuk rilis mayor terbaru - struktur Page Object Model, konvensi penamaan test case ID, fixture data-driven, dan penanganan sesi - serta menulis seluruh Page Object-nya. Memimpin tim intern QA yang menghasilkan ~847 test case di 64 file spec untuk CARDS School V3, sekaligus mereview dan memperbaiki spec yang mereka tulis.',
+      },
+      {
+        en: 'Wrote the automation suite for the Cazh POS web dashboard (CPA V2) end to end on my own: 86 test cases on the same framework.',
+        id: 'Menulis sendiri automation suite untuk dashboard web Cazh POS (CPA V2) dari awal sampai akhir: 86 test case di atas kerangka yang sama.',
       },
       {
         en: 'Designed the automation suite to stay traceable to the test case documentation, with every test carrying its own test case ID, using data-driven fixtures, cy.intercept for request and response verification, cy.session to avoid repeating login per test, and Mochawesome reporting.',
