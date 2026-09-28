@@ -7,7 +7,7 @@ import { DEFAULT_LOCALE, LOCALES, type Locale, localePath, t } from './i18n';
 export const SITE_URL = 'https://fajarardians.my.id';
 
 /** Path netral yang punya halaman sendiri di kedua bahasa (tanpa case study). */
-export const STATIC_PATHS = ['/', '/work', '/about', '/contact'] as const;
+export const STATIC_PATHS = ['/', '/work', '/artifacts', '/about', '/contact'] as const;
 
 // next.config.mjs memakai trailingSlash: true, jadi URL kanonik & hreflang
 // harus diakhiri garis miring agar cocok dengan file yang benar-benar terbit.

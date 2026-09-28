@@ -20,6 +20,7 @@ export const ui = {
   nav: {
     work: { en: 'Work', id: 'Proyek' },
     about: { en: 'About', id: 'Tentang' },
+    artifacts: { en: 'Artifacts', id: 'Artefak' },
     contact: { en: 'Contact', id: 'Kontak' },
     resume: { en: 'Resume', id: 'CV' },
     resumeEn: { en: 'English (PDF)', id: 'Inggris (PDF)' },
@@ -112,6 +113,25 @@ export const ui = {
       en: 'Email is the fastest way to reach me.',
       id: 'Email adalah cara tercepat menghubungi saya.',
     },
+  },
+
+  artifacts: {
+    metaTitle: { en: 'QA artifacts', id: 'Artefak QA' },
+    metaDescription: {
+      en: 'Test plan, test cases, and bug reports: how I document testing work.',
+      id: 'Test plan, test case, dan bug report: cara saya mendokumentasikan pekerjaan pengujian.',
+    },
+    eyebrow: { en: 'QA artifacts', id: 'Artefak QA' },
+    title: { en: 'How I document testing', id: 'Cara saya mendokumentasikan pengujian' },
+    description: {
+      en: 'Testing is only half the job; the other half is writing it down so other people can act on it. These are the three documents I produce most, shown as structure and judgement rather than pasted in full.',
+      id: 'Menguji baru separuh pekerjaan; separuhnya lagi adalah menuliskannya supaya orang lain bisa menindaklanjuti. Ini tiga dokumen yang paling sering saya buat, ditampilkan sebagai struktur dan pertimbangan, bukan tempelan utuh.',
+    },
+    onThisPage: { en: 'On this page', id: 'Di halaman ini' },
+    structure: { en: 'Document structure', id: 'Kerangka dokumen' },
+    columns: { en: 'Columns used', id: 'Kolom yang dipakai' },
+    decisions: { en: 'What it shows', id: 'Apa yang ditunjukkan' },
+    samples: { en: 'Sample entries', id: 'Contoh entri' },
   },
 
   project: {

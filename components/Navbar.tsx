@@ -13,6 +13,7 @@ import { LanguageSwitcher } from './LanguageSwitcher';
 // Path netral (tanpa prefiks bahasa); prefiks ditambahkan saat render.
 const navItems = [
   { key: 'work', path: '/work', label: ui.nav.work },
+  { key: 'artifacts', path: '/artifacts', label: ui.nav.artifacts },
   { key: 'about', path: '/about', label: ui.nav.about },
   { key: 'contact', path: '/contact', label: ui.nav.contact },
 ] as const;
