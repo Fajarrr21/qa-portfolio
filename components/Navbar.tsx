@@ -9,11 +9,12 @@ import { ui } from '@/content/ui';
 import { asset } from '@/lib/basePath';
 import { type Locale, localePath, stripLocale, t } from '@/lib/i18n';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { ThemeToggle } from './ThemeToggle';
 
 // Path netral (tanpa prefiks bahasa); prefiks ditambahkan saat render.
 const navItems = [
   { key: 'work', path: '/work', label: ui.nav.work },
-  { key: 'artifacts', path: '/artifacts', label: ui.nav.artifacts },
+  { key: 'docs', path: '/docs', label: ui.nav.docs },
   { key: 'about', path: '/about', label: ui.nav.about },
   { key: 'contact', path: '/contact', label: ui.nav.contact },
 ] as const;
@@ -160,11 +161,13 @@ export function Navbar({ lang }: { lang: Locale }) {
             GitHub
           </a>
 
+          <ThemeToggle lang={lang} className="ml-2" />
           <LanguageSwitcher lang={lang} className="ml-2" />
         </div>
 
         {/* Mobile toggle - switcher tetap terlihat tanpa membuka menu */}
         <div className="flex items-center gap-2 md:hidden">
+          <ThemeToggle lang={lang} />
           <LanguageSwitcher lang={lang} />
           <button
             type="button"

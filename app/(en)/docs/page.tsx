@@ -5,7 +5,7 @@ import { t } from '@/lib/i18n';
 import { pageMeta } from '@/lib/metadata';
 
 export const metadata: Metadata = pageMeta(
-  '/artifacts',
+  '/docs',
   'en',
   t(ui.artifacts.metaTitle, 'en'),
   t(ui.artifacts.metaDescription, 'en'),

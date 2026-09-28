@@ -47,8 +47,22 @@ const inter = Inter({
 // Dipisah supaya <html lang> bisa berbeda per bahasa tanpa menduplikasi markup.
 export function RootShell({ lang, children }: { lang: Locale; children: ReactNode }) {
   return (
-    <html lang={lang} className={inter.variable}>
+    // suppressHydrationWarning: skrip di bawah menambah data-theme pada <html>
+    // sebelum React menghidrasi, jadi atribut server dan klien memang berbeda.
+    <html lang={lang} className={inter.variable} suppressHydrationWarning>
       <body className="min-h-screen font-sans antialiased">
+        {/* Elemen pertama di body, dan harus tetap yang pertama: skrip sinkron
+            menghentikan parsing sampai selesai, jadi data-theme sudah terpasang
+            sebelum apa pun digambar. Kalau ditunda, pengunjung bertema gelap
+            melihat kedipan terang lebih dulu.
+            try/catch karena localStorage bisa melempar error di mode penyamaran
+            atau saat penyimpanan situs diblokir. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{var t=localStorage.getItem('theme');if(t==='dark'){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}",
+          }}
+        />
         <script
           type="application/ld+json"
           // Sumbernya objek buatan sendiri di atas, bukan input dari luar.

@@ -15,12 +15,14 @@ export const ui = {
     closeMenu: { en: 'Close menu', id: 'Tutup menu' },
     language: { en: 'Language', id: 'Bahasa' },
     filterProjects: { en: 'Filter projects', id: 'Filter proyek' },
+    themeToDark: { en: 'Switch to dark theme', id: 'Ganti ke tema gelap' },
+    themeToLight: { en: 'Switch to light theme', id: 'Ganti ke tema terang' },
   },
 
   nav: {
     work: { en: 'Work', id: 'Proyek' },
     about: { en: 'About', id: 'Tentang' },
-    artifacts: { en: 'Artifacts', id: 'Artefak' },
+    docs: { en: 'Documentation', id: 'Dokumentasi' },
     contact: { en: 'Contact', id: 'Kontak' },
     resume: { en: 'Resume', id: 'CV' },
     resumeEn: { en: 'English (PDF)', id: 'Inggris (PDF)' },
@@ -115,13 +117,17 @@ export const ui = {
     },
   },
 
+  // Kata "artifact" tetap dipakai sebagai istilah internal (di content/artifacts.ts
+  // dan tipe Artifact) karena memang itu sebutan bakunya untuk test plan, test
+  // case, dan bug report. Yang dibaca pengunjung sengaja dibuat lebih lugas:
+  // "Dokumentasi" langsung dimengerti recruiter maupun orang teknis.
   artifacts: {
-    metaTitle: { en: 'QA artifacts', id: 'Artefak QA' },
+    metaTitle: { en: 'Documentation', id: 'Dokumentasi' },
     metaDescription: {
       en: 'Test plan, test cases, and bug reports: how I document testing work.',
       id: 'Test plan, test case, dan bug report: cara saya mendokumentasikan pekerjaan pengujian.',
     },
-    eyebrow: { en: 'QA artifacts', id: 'Artefak QA' },
+    eyebrow: { en: 'Documentation', id: 'Dokumentasi' },
     title: { en: 'How I document testing', id: 'Cara saya mendokumentasikan pengujian' },
     description: {
       en: 'Testing is only half the job; the other half is writing it down so other people can act on it. These are the three documents I produce most, shown as structure and judgement rather than pasted in full.',
