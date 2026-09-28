@@ -35,15 +35,18 @@ export const parabank: Project = {
     { value: '9', label: { en: 'Spec files', id: 'File spec' } },
     { value: '8', label: { en: 'Application bugs found', id: 'Bug aplikasi ditemukan' } },
   ],
-  links: [{ label: 'GitHub', href: 'https://github.com/Fajarrr21/project-parabank' }],
+  links: [
+    { label: 'GitHub', href: 'https://github.com/Fajarrr21/project-parabank' },
+    { label: 'Live Report', href: 'https://fajarrr21.github.io/project-parabank/' },
+  ],
   overview: [
     {
       en: 'ParaBank is Parasoft\'s demo online banking application. It is a useful target precisely because it is imperfect: transfers, bill payments, loan requests, and account management all work well enough to automate, and several of them are broken in ways worth catching.',
       id: 'ParaBank adalah aplikasi demo online banking milik Parasoft. Ia jadi target yang berguna justru karena tidak sempurna: transfer, pembayaran tagihan, pengajuan pinjaman, dan manajemen akun semuanya cukup berjalan untuk diotomasi, dan beberapa di antaranya rusak dengan cara yang layak ditangkap.',
     },
     {
-      en: 'The suite covers nine modules across UI and REST API. Forty-three test cases run, thirty-nine pass, and four fail. The four failures are not flaky tests or unfinished work - they are ParaBank behaving incorrectly, and they are left red on purpose.',
-      id: 'Suite ini mencakup sembilan modul di UI dan REST API. Empat puluh tiga test case dijalankan, tiga puluh sembilan lulus, empat gagal. Keempat kegagalan itu bukan test yang flaky atau pekerjaan yang belum selesai - itu ParaBank yang berperilaku salah, dan sengaja dibiarkan merah.',
+      en: 'The suite covers nine modules across UI and REST API. Forty-three test cases run in just over three minutes: thirty-nine pass, four fail. The four failures are not flaky tests or unfinished work - they are ParaBank behaving incorrectly, and they are left red on purpose. The published report below is that run, not a cleaned-up version of it.',
+      id: 'Suite ini mencakup sembilan modul di UI dan REST API. Empat puluh tiga test case berjalan dalam waktu sedikit di atas tiga menit: tiga puluh sembilan lulus, empat gagal. Keempat kegagalan itu bukan test yang flaky atau pekerjaan yang belum selesai - itu ParaBank yang berperilaku salah, dan sengaja dibiarkan merah. Laporan yang dipublikasikan di bawah adalah eksekusi itu, bukan versi yang sudah dirapikan.',
     },
   ],
   objective: {
@@ -219,6 +222,15 @@ it('TC-TRF003 : transfer dengan nominal negatif ditolak', () => {
       note: {
         en: 'including a negative transfer that reverses direction',
         id: 'termasuk transfer negatif yang membalik arah',
+      },
+    },
+    // Angka dari eksekusi nyata, bukan perkiraan - lihat laporan live.
+    {
+      value: '3m 11s',
+      label: { en: 'Full suite run time', id: 'Waktu eksekusi suite penuh' },
+      note: {
+        en: '43 tests, 9 spec files, one pass',
+        id: '43 test, 9 file spec, sekali jalan',
       },
     },
   ],
