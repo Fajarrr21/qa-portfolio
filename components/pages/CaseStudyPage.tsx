@@ -183,6 +183,27 @@ export function CaseStudyPage({ slug, lang }: { slug: string; lang: Locale }) {
           </CaseSection>
         )}
 
+        {/* Temuan yang menahan rilis - cerita, bukan angka, jadi dirender
+            terpisah dari results dan diletakkan sebelum angkanya. */}
+        {project.findings && project.findings.length > 0 && (
+          <CaseSection title={t(ui.caseStudy.findings, lang)}>
+            <div className="grid gap-4 md:grid-cols-2">
+              {project.findings.map((f, i) => (
+                <div key={i} className="rounded border border-border bg-surface p-6">
+                  <h3 className="font-semibold">{t(f.title, lang)}</h3>
+                  <p className="mt-2 text-sm text-muted">{t(f.body, lang)}</p>
+                  <div className="mt-4 border-t border-border pt-3">
+                    <p className="text-xs font-medium uppercase tracking-wider text-accent">
+                      {t(ui.caseStudy.findingImpact, lang)}
+                    </p>
+                    <p className="mt-1.5 text-sm text-muted">{t(f.impact, lang)}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </CaseSection>
+        )}
+
         {/* Results */}
         {project.results && project.results.length > 0 && (
           <CaseSection title={t(ui.caseStudy.results, lang)}>

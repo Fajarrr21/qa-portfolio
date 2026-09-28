@@ -224,7 +224,48 @@ cy.fixture('subjects').then((rows) => {
 });`,
     },
   ],
+  // Sengaja digeneralisasi - tidak menyebut modul atau versi produk. Yang
+  // dinilai pembaca adalah temuannya dan akibatnya, bukan fitur mana di
+  // produk mana. Lihat aturan di interface Finding (lib/types.ts).
+  findings: [
+    {
+      title: {
+        en: 'A bulk import that looked like it worked',
+        id: 'Impor massal yang terlihat berhasil',
+      },
+      body: {
+        en: 'The save button entered its loading state and gave no error, but the data never persisted - the request had failed on the server. Nothing on screen said so. A tester following the happy path and trusting the UI would have marked it passed.',
+        id: 'Tombol simpan masuk ke keadaan loading dan tidak menampilkan error apa pun, tetapi datanya tidak pernah tersimpan - request-nya gagal di server. Tidak ada yang memberitahukannya di layar. Penguji yang mengikuti happy path dan percaya pada UI akan menandainya lulus.',
+      },
+      impact: {
+        en: 'Without bulk import, each record has to be entered one at a time. On a product where a single customer onboards hundreds of records, that is the difference between minutes and hours - and the kind of first impression that costs a partner relationship rather than a support ticket.',
+        id: 'Tanpa impor massal, setiap data harus dimasukkan satu per satu. Pada produk yang satu pelanggannya memasukkan ratusan data, itu perbedaan antara hitungan menit dan hitungan jam - dan kesan pertama yang harganya bukan satu tiket support, melainkan hubungan dengan partner.',
+      },
+    },
+    {
+      title: {
+        en: 'A flow that changed between major versions',
+        id: 'Alur yang berubah antar versi mayor',
+      },
+      body: {
+        en: 'What used to be a single save became two ordered steps, and saving at the first step moved the user to a page that showed the record as complete when the second step had never been filled in. Reaching the second step at all meant either editing from that history page or going back to the start.',
+        id: 'Yang sebelumnya sekali simpan menjadi dua langkah berurutan, dan menyimpan di langkah pertama memindahkan pengguna ke halaman yang menampilkan datanya seolah sudah lengkap padahal langkah kedua belum pernah diisi. Untuk sampai ke langkah kedua, pengguna harus mengedit dari halaman riwayat itu atau kembali ke awal.',
+      },
+      impact: {
+        en: 'Existing users would run it from muscle memory built on the previous version and believe they had finished. The cost here is not a defect report - it is retraining every existing user, and the work that lands on whoever does the training.',
+        id: 'Pengguna lama akan menjalankannya dengan kebiasaan dari versi sebelumnya dan mengira sudah selesai. Ongkosnya di sini bukan laporan cacat - melainkan melatih ulang seluruh pengguna lama, dan beban kerja yang jatuh ke siapa pun yang menangani pelatihan.',
+      },
+    },
+  ],
   results: [
+    {
+      value: '~10',
+      label: { en: 'Bug reports validated weekly', id: 'Laporan bug divalidasi tiap minggu' },
+      note: {
+        en: 'reproduced, judged, and answered back to the reporter',
+        id: 'direproduksi, diputuskan, lalu dijelaskan kembali ke pelapor',
+      },
+    },
     {
       value: '847+',
       label: { en: 'Automated test cases', id: 'Test case otomatis' },

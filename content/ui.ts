@@ -159,6 +159,8 @@ export const ui = {
     implementation: { en: 'Implementation', id: 'Implementasi' },
     resultsThroughput: { en: 'Results - throughput', id: 'Hasil - throughput' },
     results: { en: 'Results', id: 'Hasil' },
+    findings: { en: 'Findings that held a release', id: 'Temuan yang menahan rilis' },
+    findingImpact: { en: 'If it had shipped', id: 'Kalau lolos ke production' },
     evidence: { en: 'Evidence', id: 'Bukti' },
     showAsTable: { en: 'Show as table', id: 'Tampilkan sebagai tabel' },
     loadLevel: { en: 'Load', id: 'Beban' },

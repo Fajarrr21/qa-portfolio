@@ -50,6 +50,20 @@ export interface ResultTile {
   note?: Text;
 }
 
+/**
+ * Temuan yang menahan rilis - apa yang ditemukan dan apa akibatnya kalau lolos.
+ *
+ * Dipisahkan dari `results` karena bentuknya cerita, bukan angka. Untuk
+ * pekerjaan profesional, isinya WAJIB digeneralisasi: ceritakan cacatnya dan
+ * dampaknya, jangan menyebut modul atau versi produk kantor.
+ */
+export interface Finding {
+  title: Text;
+  body: Text;
+  /** Yang akan terjadi kalau temuan ini lolos ke production. */
+  impact: Text;
+}
+
 /** Data chart benchmark (grouped bars: dua stack per endpoint, per load level). */
 export interface BenchmarkPoint {
   endpoint: string;
@@ -110,6 +124,8 @@ export interface Project {
   architecture?: FlowStep[];
   snippets?: CodeSnippet[];
   results?: ResultTile[];
+  /** Temuan yang menahan rilis - lihat interface Finding. */
+  findings?: Finding[];
   benchmarkChart?: BenchmarkChart;
   evidence?: EvidenceItem[];
 }
